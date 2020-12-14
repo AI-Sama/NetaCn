@@ -15,10 +15,10 @@ import springfox.documentation.spring.web.plugins.Docket;
  * @ProjectName: netacn
  * @Author: ZhangXiangQiang
  * @Create: 2020/12/14 16:23
- * @Description:
+ * @Description: swagger配置类
  */
 @Configuration
-@EnableOpenApi
+@EnableOpenApi //开启swagger
 public class SwaggerConfig{
     @Bean
     public Docket createRestApi() {

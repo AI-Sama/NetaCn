@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ; false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/netacn?serverTimezone=UTC" userId="root"
+                        password="root">
+            <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        </jdbcConnection>
+        <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg"
+            userId="yycg"
+            password="yycg">
+        </jdbcConnection> -->
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+            <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+          NUMERIC 类型解析为java.math.BigDecimal -->
+        </javaTypeResolver>
+
+
+        <javaModelGenerator targetPackage="com.xnqn.netacn.model"
+                            targetProject=".\src\main\java\">
+            <!-- 生成model类的位置 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="trimStrings" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+        </javaModelGenerator>
+
+        <sqlMapGenerator
+                targetPackage="com.xnqn.netacn.mapper"
+                targetProject=".\src\main\java\">
+            <!-- mapper映射文件生成的位置 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+        </sqlMapGenerator>
+
+        <javaClientGenerator
+                type="XMLMAPPER"
+                targetPackage="com.xnqn.netacn.mapper"
+                targetProject=".\src\main\java\">
+            <!-- mapper接口生成的位置 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+        </javaClientGenerator>
+
+        <table tableName="links"
+               enableCountByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false">
+            <!-- 指定数据库表和不自动生成的方法-->
+        </table>
+
+        <!-- 有些表的字段需要指定java类型
+         <table schema="" tableName="">
+            <columnOverride column="" javaType="" />
+        </table> -->
+    </context>
+</generatorConfiguration>

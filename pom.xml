@@ -68,11 +68,25 @@
     <build>
         <!--描述项目如何构建-->
         <plugins>
-            <!--项目打包过程中使用的配置-->
             <plugin>
+                <!--项目打包过程中使用的配置-->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <!--mybatis 代码自动生成插件-->
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <configuration>
+                    <!--配置文件的位置-->
+                    <configurationFile>generatorConfig.xml</configurationFile>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
