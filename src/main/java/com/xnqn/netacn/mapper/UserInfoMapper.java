@@ -1,7 +1,9 @@
 package com.xnqn.netacn.mapper;
 
 import com.xnqn.netacn.model.UserInfo;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Long id);
 
