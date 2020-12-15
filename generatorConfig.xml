@@ -10,7 +10,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/netacn?serverTimezone=UTC" userId="root"
                         password="root">
             <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
@@ -54,7 +54,7 @@
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
         </javaClientGenerator>
 
-        <table tableName="links"
+        <table tableName="user_info"
                enableCountByExample="false"
                enableSelectByExample="false"
                enableDeleteByExample="false"
