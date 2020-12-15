@@ -1,0 +1,11 @@
+ 用户表
+    create table user_info(
+        id bigint unsigned  primary key auto_increment  comment 'id',
+        gmt_create datetime not null default current_timestamp comment '创建时间',
+        gmt_modified datetime not null on update current_timestamp default current_timestamp comment '修改时间',
+        account varchar(50) not null  comment '账号',
+        password varchar(50) not null comment '密码',
+        head_img varchar(50) comment '头像',
+        language int unsigned  default 0 comment '语言选项',
+        is_unlimit int unsigned  default 0 comment '限制开关'
+    );
