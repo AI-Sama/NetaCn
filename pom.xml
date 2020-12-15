@@ -68,6 +68,7 @@
     <build>
         <!--描述项目如何构建-->
         <plugins>
+
             <plugin>
                 <!--项目打包过程中使用的配置-->
                 <groupId>org.springframework.boot</groupId>
@@ -86,6 +87,7 @@
                     <overwrite>true</overwrite>
                 </configuration>
                 <dependencies>
+                    <!--plugin的依赖-->
                     <dependency>
                         <!--mysql驱动包-->
                         <groupId>mysql</groupId>
@@ -97,5 +99,4 @@
 
         </plugins>
     </build>
-
 </project>
