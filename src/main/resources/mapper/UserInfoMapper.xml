@@ -1,224 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xnqn.netacn.mapper.UserInfoMapper">
-  <resultMap id="BaseResultMap" type="com.xnqn.netacn.model.UserInfo">
-    <id column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
-    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
-    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
-    <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
-    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
-    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
-    <result column="user_language" jdbcType="TINYINT" property="userLanguage" />
-    <result column="word_limit" jdbcType="TINYINT" property="wordLimit" />
-    <result column="up_limit" jdbcType="TINYINT" property="upLimit" />
-    <result column="login_limit" jdbcType="TINYINT" property="loginLimit" />
-    <result column="user_power" jdbcType="TINYINT" property="userPower" />
-    <result column="user_level" jdbcType="TINYINT" property="userLevel" />
-    <result column="spare1" jdbcType="VARCHAR" property="spare1" />
-    <result column="spare2" jdbcType="VARCHAR" property="spare2" />
-    <result column="spare3" jdbcType="VARCHAR" property="spare3" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.xnqn.netacn.model.UserInfo">
+        <id column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+        <result column="user_account" jdbcType="VARCHAR" property="userAccount"/>
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="head_img" jdbcType="VARCHAR" property="headImg"/>
+        <result column="user_language" jdbcType="TINYINT" property="userLanguage"/>
+        <result column="word_limit" jdbcType="TINYINT" property="wordLimit"/>
+        <result column="up_limit" jdbcType="TINYINT" property="upLimit"/>
+        <result column="login_limit" jdbcType="TINYINT" property="loginLimit"/>
+        <result column="user_power" jdbcType="TINYINT" property="userPower"/>
+        <result column="user_level" jdbcType="TINYINT" property="userLevel"/>
+        <result column="spare1" jdbcType="VARCHAR" property="spare1"/>
+        <result column="spare2" jdbcType="VARCHAR" property="spare2"/>
+        <result column="spare3" jdbcType="VARCHAR" property="spare3"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     user_id, gmt_create, gmt_modified, last_login_time, user_account, user_password, 
     head_img, user_language, word_limit, up_limit, login_limit, user_power, user_level, 
     spare1, spare2, spare3
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user_info
-    where user_id = #{userId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="selectByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info
+        where user_account = #{userAccount,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_info
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xnqn.netacn.model.UserInfo">
-    insert into user_info (user_id, gmt_create, gmt_modified, 
+    <delete id="deleteByAccount" parameterType="java.lang.String">
+    delete from user_info
+     where user_account = #{userAccount,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.xnqn.netacn.model.UserInfo">
+    insert into user_info (
       last_login_time, user_account, user_password, 
       head_img, user_language, word_limit, 
       up_limit, login_limit, user_power, 
       user_level, spare1, spare2, 
       spare3)
-    values (#{userId,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+    values (
       #{lastLoginTime,jdbcType=TIMESTAMP}, #{userAccount,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
       #{headImg,jdbcType=VARCHAR}, #{userLanguage,jdbcType=TINYINT}, #{wordLimit,jdbcType=TINYINT}, 
       #{upLimit,jdbcType=TINYINT}, #{loginLimit,jdbcType=TINYINT}, #{userPower,jdbcType=TINYINT}, 
       #{userLevel,jdbcType=TINYINT}, #{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR}, 
       #{spare3,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xnqn.netacn.model.UserInfo">
-    insert into user_info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
-      </if>
-      <if test="lastLoginTime != null">
-        last_login_time,
-      </if>
-      <if test="userAccount != null">
-        user_account,
-      </if>
-      <if test="userPassword != null">
-        user_password,
-      </if>
-      <if test="headImg != null">
-        head_img,
-      </if>
-      <if test="userLanguage != null">
-        user_language,
-      </if>
-      <if test="wordLimit != null">
-        word_limit,
-      </if>
-      <if test="upLimit != null">
-        up_limit,
-      </if>
-      <if test="loginLimit != null">
-        login_limit,
-      </if>
-      <if test="userPower != null">
-        user_power,
-      </if>
-      <if test="userLevel != null">
-        user_level,
-      </if>
-      <if test="spare1 != null">
-        spare1,
-      </if>
-      <if test="spare2 != null">
-        spare2,
-      </if>
-      <if test="spare3 != null">
-        spare3,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastLoginTime != null">
-        #{lastLoginTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="userAccount != null">
-        #{userAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="userPassword != null">
-        #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="headImg != null">
-        #{headImg,jdbcType=VARCHAR},
-      </if>
-      <if test="userLanguage != null">
-        #{userLanguage,jdbcType=TINYINT},
-      </if>
-      <if test="wordLimit != null">
-        #{wordLimit,jdbcType=TINYINT},
-      </if>
-      <if test="upLimit != null">
-        #{upLimit,jdbcType=TINYINT},
-      </if>
-      <if test="loginLimit != null">
-        #{loginLimit,jdbcType=TINYINT},
-      </if>
-      <if test="userPower != null">
-        #{userPower,jdbcType=TINYINT},
-      </if>
-      <if test="userLevel != null">
-        #{userLevel,jdbcType=TINYINT},
-      </if>
-      <if test="spare1 != null">
-        #{spare1,jdbcType=VARCHAR},
-      </if>
-      <if test="spare2 != null">
-        #{spare2,jdbcType=VARCHAR},
-      </if>
-      <if test="spare3 != null">
-        #{spare3,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xnqn.netacn.model.UserInfo">
-    update user_info
-    <set>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastLoginTime != null">
-        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="userAccount != null">
-        user_account = #{userAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="userPassword != null">
-        user_password = #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="headImg != null">
-        head_img = #{headImg,jdbcType=VARCHAR},
-      </if>
-      <if test="userLanguage != null">
-        user_language = #{userLanguage,jdbcType=TINYINT},
-      </if>
-      <if test="wordLimit != null">
-        word_limit = #{wordLimit,jdbcType=TINYINT},
-      </if>
-      <if test="upLimit != null">
-        up_limit = #{upLimit,jdbcType=TINYINT},
-      </if>
-      <if test="loginLimit != null">
-        login_limit = #{loginLimit,jdbcType=TINYINT},
-      </if>
-      <if test="userPower != null">
-        user_power = #{userPower,jdbcType=TINYINT},
-      </if>
-      <if test="userLevel != null">
-        user_level = #{userLevel,jdbcType=TINYINT},
-      </if>
-      <if test="spare1 != null">
-        spare1 = #{spare1,jdbcType=VARCHAR},
-      </if>
-      <if test="spare2 != null">
-        spare2 = #{spare2,jdbcType=VARCHAR},
-      </if>
-      <if test="spare3 != null">
-        spare3 = #{spare3,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where user_id = #{userId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xnqn.netacn.model.UserInfo">
-    update user_info
-    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
-      user_account = #{userAccount,jdbcType=VARCHAR},
-      user_password = #{userPassword,jdbcType=VARCHAR},
-      head_img = #{headImg,jdbcType=VARCHAR},
-      user_language = #{userLanguage,jdbcType=TINYINT},
-      word_limit = #{wordLimit,jdbcType=TINYINT},
-      up_limit = #{upLimit,jdbcType=TINYINT},
-      login_limit = #{loginLimit,jdbcType=TINYINT},
-      user_power = #{userPower,jdbcType=TINYINT},
-      user_level = #{userLevel,jdbcType=TINYINT},
-      spare1 = #{spare1,jdbcType=VARCHAR},
-      spare2 = #{spare2,jdbcType=VARCHAR},
-      spare3 = #{spare3,jdbcType=VARCHAR}
-    where user_id = #{userId,jdbcType=INTEGER}
-  </update>
+    <insert id="insertSelective" parameterType="com.xnqn.netacn.model.UserInfo">
+        insert into user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lastLoginTime != null">
+                last_login_time,
+            </if>
+            <if test="userAccount != null">
+                user_account,
+            </if>
+            <if test="userPassword != null">
+                user_password,
+            </if>
+            <if test="headImg != null">
+                head_img,
+            </if>
+            <if test="userLanguage != null">
+                user_language,
+            </if>
+            <if test="wordLimit != null">
+                word_limit,
+            </if>
+            <if test="upLimit != null">
+                up_limit,
+            </if>
+            <if test="loginLimit != null">
+                login_limit,
+            </if>
+            <if test="userPower != null">
+                user_power,
+            </if>
+            <if test="userLevel != null">
+                user_level,
+            </if>
+            <if test="spare1 != null">
+                spare1,
+            </if>
+            <if test="spare2 != null">
+                spare2,
+            </if>
+            <if test="spare3 != null">
+                spare3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="lastLoginTime != null">
+                #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userAccount != null">
+                #{userAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="headImg != null">
+                #{headImg,jdbcType=VARCHAR},
+            </if>
+            <if test="userLanguage != null">
+                #{userLanguage,jdbcType=TINYINT},
+            </if>
+            <if test="wordLimit != null">
+                #{wordLimit,jdbcType=TINYINT},
+            </if>
+            <if test="upLimit != null">
+                #{upLimit,jdbcType=TINYINT},
+            </if>
+            <if test="loginLimit != null">
+                #{loginLimit,jdbcType=TINYINT},
+            </if>
+            <if test="userPower != null">
+                #{userPower,jdbcType=TINYINT},
+            </if>
+            <if test="userLevel != null">
+                #{userLevel,jdbcType=TINYINT},
+            </if>
+            <if test="spare1 != null">
+                #{spare1,jdbcType=VARCHAR},
+            </if>
+            <if test="spare2 != null">
+                #{spare2,jdbcType=VARCHAR},
+            </if>
+            <if test="spare3 != null">
+                #{spare3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xnqn.netacn.model.UserInfo">
+        update user_info
+        <set>
+            <if test="lastLoginTime != null">
+                last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userAccount != null">
+                user_account = #{userAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                user_password = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="headImg != null">
+                head_img = #{headImg,jdbcType=VARCHAR},
+            </if>
+            <if test="userLanguage != null">
+                user_language = #{userLanguage,jdbcType=TINYINT},
+            </if>
+            <if test="wordLimit != null">
+                word_limit = #{wordLimit,jdbcType=TINYINT},
+            </if>
+            <if test="upLimit != null">
+                up_limit = #{upLimit,jdbcType=TINYINT},
+            </if>
+            <if test="loginLimit != null">
+                login_limit = #{loginLimit,jdbcType=TINYINT},
+            </if>
+            <if test="userPower != null">
+                user_power = #{userPower,jdbcType=TINYINT},
+            </if>
+            <if test="userLevel != null">
+                user_level = #{userLevel,jdbcType=TINYINT},
+            </if>
+            <if test="spare1 != null">
+                spare1 = #{spare1,jdbcType=VARCHAR},
+            </if>
+            <if test="spare2 != null">
+                spare2 = #{spare2,jdbcType=VARCHAR},
+            </if>
+            <if test="spare3 != null">
+                spare3 = #{spare3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
 </mapper>

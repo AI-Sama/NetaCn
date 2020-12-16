@@ -6,8 +6,9 @@ import lombok.Data;
 
 import java.util.Date;
 
-@Data
+
 @ApiModel("用户表")
+@Data
 public class UserInfo {
     private Integer userId;
 

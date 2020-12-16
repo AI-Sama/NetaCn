@@ -58,7 +58,9 @@
                enableCountByExample="false"
                enableSelectByExample="false"
                enableDeleteByExample="false"
-               enableUpdateByExample="false">
+               enableUpdateByExample="false"
+               enableUpdateByPrimaryKey="false"
+        >
             <!-- 指定数据库表和不自动生成的方法-->
         </table>
 
