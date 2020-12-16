@@ -5,13 +5,13 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserInfoMapper {
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(UserInfo record);
 
     int insertSelective(UserInfo record);
 
-    UserInfo selectByPrimaryKey(Long id);
+    UserInfo selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(UserInfo record);
 

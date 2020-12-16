@@ -2,35 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xnqn.netacn.mapper.UserInfoMapper">
   <resultMap id="BaseResultMap" type="com.xnqn.netacn.model.UserInfo">
-    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="head_img" jdbcType="VARCHAR" property="headImg" />
-    <result column="language" jdbcType="INTEGER" property="language" />
-    <result column="is_unlimit" jdbcType="INTEGER" property="isUnlimit" />
+    <result column="language" jdbcType="TINYINT" property="language" />
+    <result column="word_limit" jdbcType="TINYINT" property="wordLimit" />
+    <result column="up_limit" jdbcType="TINYINT" property="upLimit" />
+    <result column="login_limit" jdbcType="TINYINT" property="loginLimit" />
+    <result column="power" jdbcType="TINYINT" property="power" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="spare1" jdbcType="VARCHAR" property="spare1" />
+    <result column="spare2" jdbcType="VARCHAR" property="spare2" />
+    <result column="spare3" jdbcType="VARCHAR" property="spare3" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, gmt_create, gmt_modified, account, password, head_img, language, is_unlimit
+    id, gmt_create, gmt_modified, last_login_time, account, password, head_img, language, 
+    word_limit, up_limit, login_limit, power, level, spare1, spare2, spare3
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user_info
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_info
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xnqn.netacn.model.UserInfo">
     insert into user_info (id, gmt_create, gmt_modified, 
-      account, password, head_img, 
-      language, is_unlimit)
-    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
-      #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{headImg,jdbcType=VARCHAR}, 
-      #{language,jdbcType=INTEGER}, #{isUnlimit,jdbcType=INTEGER})
+      last_login_time, account, password, 
+      head_img, language, word_limit, 
+      up_limit, login_limit, power, 
+      level, spare1, spare2, 
+      spare3)
+    values (#{id,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{headImg,jdbcType=VARCHAR}, #{language,jdbcType=TINYINT}, #{wordLimit,jdbcType=TINYINT}, 
+      #{upLimit,jdbcType=TINYINT}, #{loginLimit,jdbcType=TINYINT}, #{power,jdbcType=TINYINT}, 
+      #{level,jdbcType=INTEGER}, #{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR}, 
+      #{spare3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xnqn.netacn.model.UserInfo">
     insert into user_info
@@ -44,6 +59,9 @@
       <if test="gmtModified != null">
         gmt_modified,
       </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
       <if test="account != null">
         account,
       </if>
@@ -56,19 +74,43 @@
       <if test="language != null">
         language,
       </if>
-      <if test="isUnlimit != null">
-        is_unlimit,
+      <if test="wordLimit != null">
+        word_limit,
+      </if>
+      <if test="upLimit != null">
+        up_limit,
+      </if>
+      <if test="loginLimit != null">
+        login_limit,
+      </if>
+      <if test="power != null">
+        power,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="spare1 != null">
+        spare1,
+      </if>
+      <if test="spare2 != null">
+        spare2,
+      </if>
+      <if test="spare3 != null">
+        spare3,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
       <if test="gmtModified != null">
         #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="account != null">
         #{account,jdbcType=VARCHAR},
@@ -80,10 +122,31 @@
         #{headImg,jdbcType=VARCHAR},
       </if>
       <if test="language != null">
-        #{language,jdbcType=INTEGER},
+        #{language,jdbcType=TINYINT},
       </if>
-      <if test="isUnlimit != null">
-        #{isUnlimit,jdbcType=INTEGER},
+      <if test="wordLimit != null">
+        #{wordLimit,jdbcType=TINYINT},
+      </if>
+      <if test="upLimit != null">
+        #{upLimit,jdbcType=TINYINT},
+      </if>
+      <if test="loginLimit != null">
+        #{loginLimit,jdbcType=TINYINT},
+      </if>
+      <if test="power != null">
+        #{power,jdbcType=TINYINT},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="spare1 != null">
+        #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null">
+        #{spare2,jdbcType=VARCHAR},
+      </if>
+      <if test="spare3 != null">
+        #{spare3,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -96,6 +159,9 @@
       <if test="gmtModified != null">
         gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
       </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="account != null">
         account = #{account,jdbcType=VARCHAR},
       </if>
@@ -106,23 +172,52 @@
         head_img = #{headImg,jdbcType=VARCHAR},
       </if>
       <if test="language != null">
-        language = #{language,jdbcType=INTEGER},
+        language = #{language,jdbcType=TINYINT},
       </if>
-      <if test="isUnlimit != null">
-        is_unlimit = #{isUnlimit,jdbcType=INTEGER},
+      <if test="wordLimit != null">
+        word_limit = #{wordLimit,jdbcType=TINYINT},
+      </if>
+      <if test="upLimit != null">
+        up_limit = #{upLimit,jdbcType=TINYINT},
+      </if>
+      <if test="loginLimit != null">
+        login_limit = #{loginLimit,jdbcType=TINYINT},
+      </if>
+      <if test="power != null">
+        power = #{power,jdbcType=TINYINT},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="spare1 != null">
+        spare1 = #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null">
+        spare2 = #{spare2,jdbcType=VARCHAR},
+      </if>
+      <if test="spare3 != null">
+        spare3 = #{spare3,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xnqn.netacn.model.UserInfo">
     update user_info
     set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
       account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       head_img = #{headImg,jdbcType=VARCHAR},
-      language = #{language,jdbcType=INTEGER},
-      is_unlimit = #{isUnlimit,jdbcType=INTEGER}
-    where id = #{id,jdbcType=BIGINT}
+      language = #{language,jdbcType=TINYINT},
+      word_limit = #{wordLimit,jdbcType=TINYINT},
+      up_limit = #{upLimit,jdbcType=TINYINT},
+      login_limit = #{loginLimit,jdbcType=TINYINT},
+      power = #{power,jdbcType=TINYINT},
+      level = #{level,jdbcType=INTEGER},
+      spare1 = #{spare1,jdbcType=VARCHAR},
+      spare2 = #{spare2,jdbcType=VARCHAR},
+      spare3 = #{spare3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
