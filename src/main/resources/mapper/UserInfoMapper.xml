@@ -188,4 +188,49 @@
         </set>
         where user_id = #{userId,jdbcType=INTEGER}
     </update>
+    <update id="updateByAccountSelective" parameterType="com.xnqn.netacn.model.UserInfo">
+        update user_info
+        <set>
+            <if test="lastLoginTime != null">
+                last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userAccount != null">
+                user_account = #{userAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                user_password = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="headImg != null">
+                head_img = #{headImg,jdbcType=VARCHAR},
+            </if>
+            <if test="userLanguage != null">
+                user_language = #{userLanguage,jdbcType=TINYINT},
+            </if>
+            <if test="wordLimit != null">
+                word_limit = #{wordLimit,jdbcType=TINYINT},
+            </if>
+            <if test="upLimit != null">
+                up_limit = #{upLimit,jdbcType=TINYINT},
+            </if>
+            <if test="loginLimit != null">
+                login_limit = #{loginLimit,jdbcType=TINYINT},
+            </if>
+            <if test="userPower != null">
+                user_power = #{userPower,jdbcType=TINYINT},
+            </if>
+            <if test="userLevel != null">
+                user_level = #{userLevel,jdbcType=TINYINT},
+            </if>
+            <if test="spare1 != null">
+                spare1 = #{spare1,jdbcType=VARCHAR},
+            </if>
+            <if test="spare2 != null">
+                spare2 = #{spare2,jdbcType=VARCHAR},
+            </if>
+            <if test="spare3 != null">
+                spare3 = #{spare3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_account = #{userAccount,jdbcType=VARCHAR}
+    </update>
 </mapper>

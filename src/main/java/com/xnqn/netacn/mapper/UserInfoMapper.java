@@ -21,4 +21,6 @@ public interface UserInfoMapper {
 
     int updateByPrimaryKeySelective(UserInfo record);
 
+    int updateByAccountSelective(UserInfo record);
+
 }
