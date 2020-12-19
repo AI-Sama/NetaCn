@@ -29,7 +29,7 @@ public class UserInfoImpl implements UserInfoService {
 
     @Override
     public void updateUser(UserInfo userInfo) {
-        
+
         userInfoMapper.updateByAccountSelective(userInfo);
     }
 

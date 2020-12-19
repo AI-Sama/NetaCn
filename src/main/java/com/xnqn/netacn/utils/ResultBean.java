@@ -19,7 +19,6 @@ public class ResultBean<T>{
     private String resultMsg = "OK";
     @ApiModelProperty("返回数据")
     private T resultData = null;
-
     public ResultBean(){}
 
     public ResultBean(T resultData) {
