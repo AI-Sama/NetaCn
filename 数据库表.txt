@@ -1,4 +1,4 @@
- 用户表
+    用户表
     create table user_info(
         user_id int unsigned  primary key auto_increment  comment 'id',
         gmt_create datetime not null default current_timestamp comment '创建时间',
@@ -17,3 +17,26 @@
         spare2 varchar(50) comment '备用字段2',
         spare3 varchar(50) comment '备用字段3'
     );
+    词语表
+    create table neta(
+        id int unsigned  primary key auto_increment  comment 'id',
+        gmt_create datetime not null default current_timestamp comment '创建时间',
+        gmt_modified datetime not null on update current_timestamp default current_timestamp comment '修改时间',
+        neta_word varchar(100) not null comment '词语'，
+        up_user varchar(100) comment '上传人',
+        pinyin varchar(100) comment '拼音',
+        katakana varchar(100) comment '音译假名',
+        word_label varchar(100) comment '词语标签',
+        word_shield tinyint unsigned default 0 comment '是否限制',
+        word_date int unsigned comment '出现日期',
+        cn_explanation varchar(1000) comment '中文释义',
+        jp_explanation varchar(1000) comment '日语释义',
+        word_status tinyint  default 0 comment '状态',
+        look_num int unsigned default 0 comment '观看次数',
+        favorite_num int unsigned default 0 comment '收藏次数',
+        reason varchar(100) comment '驳回理由',
+        spare1 varchar(50) comment '备用字段1',
+        spare2 varchar(50) comment '备用字段2',
+        spare3 varchar(50) comment '备用字段3'
+    );
+
