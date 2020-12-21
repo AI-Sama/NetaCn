@@ -29,7 +29,7 @@ public class UserController {
     })
     @PostMapping(value = "/addUser",produces = {"application/json;charset=utf-8"})
     public ResultBean addUser(@RequestBody UserInfo userInfo){
-        
+
         //todo 添加用户
         System.out.println();
         System.out.println("Hello World");
