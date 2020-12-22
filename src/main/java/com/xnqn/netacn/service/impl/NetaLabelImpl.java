@@ -4,6 +4,7 @@ import com.xnqn.netacn.mapper.NetaLabelMapper;
 import com.xnqn.netacn.model.NetaLabel;
 import com.xnqn.netacn.service.NetaLabelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,13 +14,15 @@ import java.util.List;
  * @Create: 2020/12/22 18:32
  * @Description:
  */
+
+@Service
 public class NetaLabelImpl implements NetaLabelService {
     @Autowired
     NetaLabelMapper netaLabelMapper;
 
     @Override
     public void addLabel(NetaLabel netaLabel) {
-
+        netaLabelMapper.insert(netaLabel);
     }
 
     @Override

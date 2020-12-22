@@ -26,7 +26,6 @@
         from neta_label
         order by label_id
     </select>
-
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from neta_label
     where label_id = #{labelId,jdbcType=INTEGER}
