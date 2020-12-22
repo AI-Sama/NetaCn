@@ -87,4 +87,42 @@
       </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xnqn.netacn.model.NetaLabel">
+    update neta_label
+    <set>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cnWord != null">
+        cn_word = #{cnWord,jdbcType=VARCHAR},
+      </if>
+      <if test="jpWord != null">
+        jp_word = #{jpWord,jdbcType=VARCHAR},
+      </if>
+      <if test="spare1 != null">
+        spare1 = #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null">
+        spare2 = #{spare2,jdbcType=VARCHAR},
+      </if>
+      <if test="spare3 != null">
+        spare3 = #{spare3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where label_id = #{labelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xnqn.netacn.model.NetaLabel">
+    update neta_label
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      cn_word = #{cnWord,jdbcType=VARCHAR},
+      jp_word = #{jpWord,jdbcType=VARCHAR},
+      spare1 = #{spare1,jdbcType=VARCHAR},
+      spare2 = #{spare2,jdbcType=VARCHAR},
+      spare3 = #{spare3,jdbcType=VARCHAR}
+    where label_id = #{labelId,jdbcType=INTEGER}
+  </update>
 </mapper>

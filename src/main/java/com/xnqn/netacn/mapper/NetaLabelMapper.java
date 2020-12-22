@@ -10,4 +10,8 @@ public interface NetaLabelMapper {
     int insertSelective(NetaLabel record);
 
     NetaLabel selectByPrimaryKey(Integer labelId);
+
+    int updateByPrimaryKeySelective(NetaLabel record);
+
+    int updateByPrimaryKey(NetaLabel record);
 }
