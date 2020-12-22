@@ -24,9 +24,6 @@ public class UserController {
 
 
     @ApiOperation("添加用户接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "insert",name = "userInfo",value = "用户信息",required = true)
-    })
     @PostMapping(value = "/addUser",produces = {"application/json;charset=utf-8"})
     public ResultBean addUser(@RequestBody UserInfo userInfo){
 
