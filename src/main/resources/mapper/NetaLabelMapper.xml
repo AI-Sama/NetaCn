@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xnqn.netacn.mapper.NetaLabelMapper">
-  <resultMap id="BaseResultMap" type="com.xnqn.netacn.model.NetaLabel">
-    <id column="label_id" jdbcType="INTEGER" property="labelId" />
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
-    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
-    <result column="cn_word" jdbcType="VARCHAR" property="cnWord" />
-    <result column="jp_word" jdbcType="VARCHAR" property="jpWord" />
-    <result column="spare1" jdbcType="VARCHAR" property="spare1" />
-    <result column="spare2" jdbcType="VARCHAR" property="spare2" />
-    <result column="spare3" jdbcType="VARCHAR" property="spare3" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.xnqn.netacn.model.NetaLabel">
+        <id column="label_id" jdbcType="INTEGER" property="labelId"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        <result column="cn_word" jdbcType="VARCHAR" property="cnWord"/>
+        <result column="jp_word" jdbcType="VARCHAR" property="jpWord"/>
+        <result column="spare1" jdbcType="VARCHAR" property="spare1"/>
+        <result column="spare2" jdbcType="VARCHAR" property="spare2"/>
+        <result column="spare3" jdbcType="VARCHAR" property="spare3"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     label_id, gmt_create, gmt_modified, cn_word, jp_word, spare1, spare2, spare3
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from neta_label
-    where label_id = #{labelId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from neta_label
+        where label_id = #{labelId,jdbcType=INTEGER}
+    </select>
+    <select id="selectLabels" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from neta_label
+        order by label_id
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from neta_label
     where label_id = #{labelId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xnqn.netacn.model.NetaLabel">
+    <insert id="insert" parameterType="com.xnqn.netacn.model.NetaLabel">
     insert into neta_label (
       cn_word, jp_word, spare1, 
       spare2, spare3)
@@ -32,62 +39,62 @@
       #{cnWord,jdbcType=VARCHAR}, #{jpWord,jdbcType=VARCHAR}, #{spare1,jdbcType=VARCHAR}, 
       #{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xnqn.netacn.model.NetaLabel">
-    insert into neta_label
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="cnWord != null">
-        cn_word,
-      </if>
-      <if test="jpWord != null">
-        jp_word,
-      </if>
-      <if test="spare1 != null">
-        spare1,
-      </if>
-      <if test="spare2 != null">
-        spare2,
-      </if>
-      <if test="spare3 != null">
-        spare3,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="cnWord != null">
-        #{cnWord,jdbcType=VARCHAR},
-      </if>
-      <if test="jpWord != null">
-        #{jpWord,jdbcType=VARCHAR},
-      </if>
-      <if test="spare1 != null">
-        #{spare1,jdbcType=VARCHAR},
-      </if>
-      <if test="spare2 != null">
-        #{spare2,jdbcType=VARCHAR},
-      </if>
-      <if test="spare3 != null">
-        #{spare3,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xnqn.netacn.model.NetaLabel">
-    update neta_label
-    <set>
-      <if test="cnWord != null">
-        cn_word = #{cnWord,jdbcType=VARCHAR},
-      </if>
-      <if test="jpWord != null">
-        jp_word = #{jpWord,jdbcType=VARCHAR},
-      </if>
-      <if test="spare1 != null">
-        spare1 = #{spare1,jdbcType=VARCHAR},
-      </if>
-      <if test="spare2 != null">
-        spare2 = #{spare2,jdbcType=VARCHAR},
-      </if>
-      <if test="spare3 != null">
-        spare3 = #{spare3,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where label_id = #{labelId,jdbcType=INTEGER}
-  </update>
+    <insert id="insertSelective" parameterType="com.xnqn.netacn.model.NetaLabel">
+        insert into neta_label
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cnWord != null">
+                cn_word,
+            </if>
+            <if test="jpWord != null">
+                jp_word,
+            </if>
+            <if test="spare1 != null">
+                spare1,
+            </if>
+            <if test="spare2 != null">
+                spare2,
+            </if>
+            <if test="spare3 != null">
+                spare3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cnWord != null">
+                #{cnWord,jdbcType=VARCHAR},
+            </if>
+            <if test="jpWord != null">
+                #{jpWord,jdbcType=VARCHAR},
+            </if>
+            <if test="spare1 != null">
+                #{spare1,jdbcType=VARCHAR},
+            </if>
+            <if test="spare2 != null">
+                #{spare2,jdbcType=VARCHAR},
+            </if>
+            <if test="spare3 != null">
+                #{spare3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xnqn.netacn.model.NetaLabel">
+        update neta_label
+        <set>
+            <if test="cnWord != null">
+                cn_word = #{cnWord,jdbcType=VARCHAR},
+            </if>
+            <if test="jpWord != null">
+                jp_word = #{jpWord,jdbcType=VARCHAR},
+            </if>
+            <if test="spare1 != null">
+                spare1 = #{spare1,jdbcType=VARCHAR},
+            </if>
+            <if test="spare2 != null">
+                spare2 = #{spare2,jdbcType=VARCHAR},
+            </if>
+            <if test="spare3 != null">
+                spare3 = #{spare3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where label_id = #{labelId,jdbcType=INTEGER}
+    </update>
 </mapper>
