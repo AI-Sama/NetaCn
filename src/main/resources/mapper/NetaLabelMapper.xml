@@ -25,25 +25,16 @@
     where label_id = #{labelId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xnqn.netacn.model.NetaLabel">
-    insert into neta_label (label_id, gmt_create, gmt_modified, 
+    insert into neta_label (
       cn_word, jp_word, spare1, 
       spare2, spare3)
-    values (#{labelId,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+    values (
       #{cnWord,jdbcType=VARCHAR}, #{jpWord,jdbcType=VARCHAR}, #{spare1,jdbcType=VARCHAR}, 
       #{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xnqn.netacn.model.NetaLabel">
     insert into neta_label
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="labelId != null">
-        label_id,
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
-      </if>
       <if test="cnWord != null">
         cn_word,
       </if>
@@ -61,15 +52,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="labelId != null">
-        #{labelId,jdbcType=INTEGER},
-      </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
       <if test="cnWord != null">
         #{cnWord,jdbcType=VARCHAR},
       </if>
@@ -90,12 +72,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.xnqn.netacn.model.NetaLabel">
     update neta_label
     <set>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
       <if test="cnWord != null">
         cn_word = #{cnWord,jdbcType=VARCHAR},
       </if>
@@ -112,17 +88,6 @@
         spare3 = #{spare3,jdbcType=VARCHAR},
       </if>
     </set>
-    where label_id = #{labelId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xnqn.netacn.model.NetaLabel">
-    update neta_label
-    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      cn_word = #{cnWord,jdbcType=VARCHAR},
-      jp_word = #{jpWord,jdbcType=VARCHAR},
-      spare1 = #{spare1,jdbcType=VARCHAR},
-      spare2 = #{spare2,jdbcType=VARCHAR},
-      spare3 = #{spare3,jdbcType=VARCHAR}
     where label_id = #{labelId,jdbcType=INTEGER}
   </update>
 </mapper>

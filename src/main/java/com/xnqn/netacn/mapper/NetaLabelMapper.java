@@ -13,5 +13,4 @@ public interface NetaLabelMapper {
 
     int updateByPrimaryKeySelective(NetaLabel record);
 
-    int updateByPrimaryKey(NetaLabel record);
 }
