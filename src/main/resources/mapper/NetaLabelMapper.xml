@@ -30,7 +30,7 @@
     delete from neta_label
     where label_id = #{labelId,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.xnqn.netacn.model.NetaLabel">
+    <insert id="insert" parameterType="com.xnqn.netacn.model.NetaLabel" useGeneratedKeys="true" keyProperty="label_id" keyColumn="labelId">
     insert into neta_label (
       cn_word, jp_word, spare1, 
       spare2, spare3)

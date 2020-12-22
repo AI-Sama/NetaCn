@@ -1,11 +1,13 @@
 package com.xnqn.netacn.controller;
 
 import com.xnqn.netacn.model.UserInfo;
+import com.xnqn.netacn.service.impl.UserInfoImpl;
 import com.xnqn.netacn.utils.ResultBean;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 @Api(tags = "用户模块")
 public class UserController {
-
+    @Autowired
+    UserInfoImpl userInfoService;
 
     @ApiOperation("添加用户接口")
     @PostMapping(value = "/addUser",produces = {"application/json;charset=utf-8"})
     public ResultBean addUser(@RequestBody UserInfo userInfo){
-
-        //todo 添加用户
-        System.out.println();
-        System.out.println("Hello World");
+        userInfoService.addUser(userInfo);
         return new ResultBean();
     }
 }

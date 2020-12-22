@@ -3,6 +3,7 @@ package com.xnqn.netacn.service.impl;
 import com.xnqn.netacn.mapper.UserInfoMapper;
 import com.xnqn.netacn.model.UserInfo;
 import com.xnqn.netacn.service.UserInfoService;
+import com.xnqn.netacn.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,10 @@ public class UserInfoImpl implements UserInfoService {
 
     @Override
     public void addUser(UserInfo userInfo) {
-            userInfoMapper.insert(userInfo);
+        UserInfo userInfo1 = new UserInfo();
+        userInfo1.setUserAccount(userInfo.getUserAccount());
+        userInfo1.setUserPassword(MD5Util.strToMd5(userInfo.getUserPassword()));
+        userInfoMapper.insert(userInfo1);
     }
 
     @Override
@@ -35,7 +39,7 @@ public class UserInfoImpl implements UserInfoService {
 
     @Override
     public UserInfo selectUser(String account) {
-        UserInfo userInfo=userInfoMapper.selectByAccount(account);
+        UserInfo userInfo = userInfoMapper.selectByAccount(account);
         userInfo.setUserPassword(null);
         return userInfo;
     }
