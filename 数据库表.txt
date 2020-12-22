@@ -45,8 +45,8 @@
         label_id int unsigned  primary key auto_increment  comment 'id',
         gmt_create datetime not null default current_timestamp comment '创建时间',
         gmt_modified datetime not null on update current_timestamp default current_timestamp comment '修改时间',
-        cn_word varchar(50)  comment '中文标签'，
-        jp_word varchar(50)  comment '日语标签'，
+        cn_word varchar(50) unique comment '中文标签',
+        jp_word varchar(50) unique comment '日语标签',
         spare1 varchar(50) comment '备用字段1',
         spare2 varchar(50) comment '备用字段2',
         spare3 varchar(50) comment '备用字段3'
