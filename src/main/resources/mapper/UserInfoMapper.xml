@@ -46,17 +46,11 @@
   </delete>
     <insert id="insert" parameterType="com.xnqn.netacn.model.UserInfo">
     insert into user_info (
-      last_login_time, user_account, user_password, 
-      head_img, user_language, word_limit, 
-      up_limit, login_limit, user_power, 
-      user_level, spare1, spare2, 
-      spare3)
+      user_account, user_password
+      )
     values (
-      #{lastLoginTime,jdbcType=TIMESTAMP}, #{userAccount,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
-      #{headImg,jdbcType=VARCHAR}, #{userLanguage,jdbcType=TINYINT}, #{wordLimit,jdbcType=TINYINT}, 
-      #{upLimit,jdbcType=TINYINT}, #{loginLimit,jdbcType=TINYINT}, #{userPower,jdbcType=TINYINT}, 
-      #{userLevel,jdbcType=TINYINT}, #{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR}, 
-      #{spare3,jdbcType=VARCHAR})
+      #{userAccount,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}
+      )
   </insert>
     <insert id="insertSelective" parameterType="com.xnqn.netacn.model.UserInfo">
         insert into user_info

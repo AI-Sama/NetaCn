@@ -9,7 +9,7 @@ import com.xnqn.netacn.model.UserInfo;
  * @Description:
  */
 public interface UserInfoService {
-    void addUser(UserInfo userInfo);
+    int addUser(UserInfo userInfo);
     void deleteUser(UserInfo userInfo);
     void updateUser(UserInfo userInfo);
     UserInfo selectUser(String account);

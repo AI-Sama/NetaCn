@@ -19,11 +19,17 @@ public class UserInfoImpl implements UserInfoService {
     UserInfoMapper userInfoMapper;
 
     @Override
-    public void addUser(UserInfo userInfo) {
+    public int addUser(UserInfo userInfo) {
         UserInfo userInfo1 = new UserInfo();
         userInfo1.setUserAccount(userInfo.getUserAccount());
+        //md5加密
         userInfo1.setUserPassword(MD5Util.strToMd5(userInfo.getUserPassword()));
+        if(userInfoMapper.selectByAccount(userInfo1.getUserAccount())!=null){
+            //账号已注册
+            return 0;
+        }
         userInfoMapper.insert(userInfo1);
+        return 1;
     }
 
     @Override
