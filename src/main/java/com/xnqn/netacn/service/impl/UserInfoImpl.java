@@ -8,7 +8,6 @@ import com.xnqn.netacn.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 /**
  * @ProjectName: netacn
@@ -59,6 +58,7 @@ public class UserInfoImpl implements UserInfoService {
         if (getUser != null) {
             if (MD5Util.strToMd5(userInfo.getUserPassword()).equals(getUser.getUserPassword())) {
                 //登录成功
+                getUser.    setUserPassword(null);
                 getUser.setSpare1(TokenUtils.getJwtToken(getUser.getUserAccount()));
                 System.out.println(getUser);
                 return getUser;

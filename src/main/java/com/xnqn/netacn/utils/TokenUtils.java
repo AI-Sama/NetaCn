@@ -48,7 +48,7 @@ public class TokenUtils {
         String jwtToken = JWT.create()
                 .withAudience("user") //签发对象
                 .withIssuedAt(new Date())//签发时间
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRE * 1000 * 60 * 60 * 24))//过期时间
+                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRE * 1000 * 60 * 60))//过期时间
                 .withClaim("userAccount", userAccount)//自定义参数
                 .sign(Algorithm.HMAC256(APP_SECRET));//加入密钥以及加密方式
         return jwtToken;
