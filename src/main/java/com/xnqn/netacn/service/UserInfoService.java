@@ -13,4 +13,5 @@ public interface UserInfoService {
     void deleteUser(UserInfo userInfo);
     void updateUser(UserInfo userInfo);
     UserInfo selectUser(String account);
+    UserInfo userLogin(UserInfo userInfo);
 }

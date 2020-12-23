@@ -29,21 +29,24 @@ public class UserController {
     UserInfoImpl userInfoService;
 
     @ApiOperation("添加用户")
-    @PostMapping(value = "/addUser",produces = {"application/json;charset=utf-8"})
-    public ResultBean addUser(@RequestBody UserInfo userInfo){
-        log.info("日志："+userInfo.toString());
-        switch ( userInfoService.addUser(userInfo)){
+    @PostMapping(value = "/addUser", produces = {"application/json;charset=utf-8"})
+    public ResultBean addUser(@RequestBody UserInfo userInfo) {
+        log.info("日志：" + userInfo.toString());
+        switch (userInfoService.addUser(userInfo)) {
             case 0:
-                return new ResultBean(0,"该账号已被注册");
+                return new ResultBean(0, "该账号已被注册");
         }
         return new ResultBean();
     }
+
     @ApiOperation("登录")
-    @PostMapping(value = "/loginUser",produces = {"application/json;charset=utf-8"})
-    public ResultBean loginUser(@RequestBody UserInfo userInfo){
-        log.info("日志："+userInfo.toString());
-        System.out.println(userInfo);
-//      userInfoService.addUser(userInfo);
-        return new ResultBean();
+    @PostMapping(value = "/userLogin", produces = {"application/json;charset=utf-8"})
+    public ResultBean userLogin(@RequestBody UserInfo userInfo) {
+        log.info("日志：" + userInfo.toString());
+        UserInfo returnUser=userInfoService.userLogin(userInfo);
+        if(returnUser==null){
+            return new ResultBean(0,"账号或密码错误");
+        }
+        return new ResultBean(returnUser);
     }
 }
