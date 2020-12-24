@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 public class UserInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+//        if("OPTIONS".equals(request.getMethod().toUpperCase())) {
+//              放行OPTIONS请求
+//            return true;
+//        }
         String token = request.getHeader("token");
         if (token == null || token.trim().length() <= 0) {
             // 重定向
@@ -23,7 +27,6 @@ public class UserInterceptor implements HandlerInterceptor {
             return false;
         }
         String userAccount = TokenUtils.verifyToken(token);
-        System.out.println(userAccount);
         if (userAccount != null) {
             request.setAttribute("userAccount", userAccount);
             return true;
