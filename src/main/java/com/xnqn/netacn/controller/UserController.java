@@ -9,10 +9,9 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ProjectName: netacn
@@ -43,10 +42,24 @@ public class UserController {
     @PostMapping(value = "/userLogin", produces = {"application/json;charset=utf-8"})
     public ResultBean userLogin(@RequestBody UserInfo userInfo) {
         log.info("日志：" + userInfo.toString());
-        UserInfo returnUser=userInfoService.userLogin(userInfo);
-        if(returnUser==null){
-            return new ResultBean(0,"账号或密码错误");
+        UserInfo returnUser = userInfoService.userLogin(userInfo);
+        if (returnUser == null) {
+            return new ResultBean(0, "账号或密码错误");
         }
         return new ResultBean(returnUser);
+    }
+
+    @ApiOperation("查找用户信息")
+    @GetMapping(value = "/getUserInfo", produces = {"application/json;charset=utf-8"})
+    public ResultBean getUserInfo(HttpServletRequest httpServletRequest) {
+        UserInfo userInfo = userInfoService.selectUser(httpServletRequest.getAttribute("userAccount").toString());
+        userInfo.setUserPassword(null);
+        System.out.println(userInfo);
+        return new ResultBean(userInfo);
+    }
+    @ApiOperation("test")
+    @GetMapping(value = "/test", produces = {"application/json;charset=utf-8"})
+    public ResultBean test() {
+        return new ResultBean();
     }
 }
