@@ -44,6 +44,7 @@ public class UserController {
         log.info("日志：" + userInfo.toString());
         UserInfo returnUser = userInfoService.userLogin(userInfo);
         if (returnUser == null) {
+            
             return new ResultBean(0, "账号或密码错误");
         }
         return new ResultBean(returnUser);
@@ -54,9 +55,9 @@ public class UserController {
     public ResultBean getUserInfo(HttpServletRequest httpServletRequest) {
         UserInfo userInfo = userInfoService.selectUser(httpServletRequest.getAttribute("userAccount").toString());
         userInfo.setUserPassword(null);
-        System.out.println(userInfo);
         return new ResultBean(userInfo);
     }
+
     @ApiOperation("test")
     @GetMapping(value = "/test", produces = {"application/json;charset=utf-8"})
     public ResultBean test() {
