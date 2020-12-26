@@ -29,9 +29,9 @@ public class UserController {
     @PostMapping(value = "/updateUser", produces = {"application/json;charset=utf-8"})
     public ResultBean updateUser(@RequestBody UserInfo userInfo) {
         log.info("修改用户信息：" + userInfo.toString());
-        int code=userInfoService.updateUser(userInfo);
-        if(code==0){
-            return new ResultBean(0,"该昵称已被占用");
+        int code = userInfoService.updateUser(userInfo);
+        if (code == 0) {
+            return new ResultBean(0, "该昵称已被占用");
         }
         return new ResultBean();
     }
