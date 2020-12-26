@@ -40,9 +40,23 @@ public class UserInfoImpl implements UserInfoService {
     }
 
     @Override
-    public void updateUser(UserInfo userInfo) {
-
-        userInfoMapper.updateByAccountSelective(userInfo);
+    public int updateUser(UserInfo userInfo) {
+        //更新用户基础信息
+        if (userInfoMapper.selectByUserName(userInfo.getUserName()) != null) {
+            //昵称已占用
+            return 0;
+        }
+        UserInfo change = new UserInfo();
+        change.setUserAccount(userInfo.getUserAccount());
+        change.setUserName(userInfo.getUserName());
+        change.setWordLimit(userInfo.getWordLimit());
+        change.setUserLanguage(userInfo.getUserLanguage());
+        if (change.getUserAccount().equals(change.getUserName())) {
+            //如果昵称和账号名相同,说明是默认昵称
+            change.setUserName(null);
+        }
+        userInfoMapper.updateByAccountSelective(change);
+        return 1;
     }
 
     @Override
@@ -58,7 +72,7 @@ public class UserInfoImpl implements UserInfoService {
         if (getUser != null) {
             if (MD5Util.strToMd5(userInfo.getUserPassword()).equals(getUser.getUserPassword())) {
                 //登录成功
-                getUser.    setUserPassword(null);
+                getUser.setUserPassword(null);
                 getUser.setSpare1(TokenUtils.getJwtToken(getUser.getUserAccount()));
                 System.out.println(getUser);
                 return getUser;

@@ -26,8 +26,6 @@ public class NetaLabelController {
     @PostMapping(value = "/addLabel", produces = {"application/json;charset=utf-8"})
     public ResultBean addLabel(@RequestBody NetaLabel netaLabel) {
         //todo 添加标签
-        System.out.println();
-        System.out.println("Hello World");
         return new ResultBean();
     }
 

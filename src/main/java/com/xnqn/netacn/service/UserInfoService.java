@@ -11,7 +11,7 @@ import com.xnqn.netacn.model.UserInfo;
 public interface UserInfoService {
     int addUser(UserInfo userInfo);
     void deleteUser(UserInfo userInfo);
-    void updateUser(UserInfo userInfo);
+    int updateUser(UserInfo userInfo);
     UserInfo selectUser(String account);
     UserInfo userLogin(UserInfo userInfo);
 }
