@@ -44,7 +44,6 @@ public class UserController {
         log.info("日志：" + userInfo.toString());
         UserInfo returnUser = userInfoService.userLogin(userInfo);
         if (returnUser == null) {
-            
             return new ResultBean(0, "账号或密码错误");
         }
         return new ResultBean(returnUser);

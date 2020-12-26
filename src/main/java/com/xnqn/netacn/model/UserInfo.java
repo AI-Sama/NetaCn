@@ -19,6 +19,10 @@ public class UserInfo {
     private Date lastLoginTime;
     @ApiModelProperty("账号")
     private String userAccount;
+    @ApiModelProperty("用户邮箱")
+    private String userMail;
+    @ApiModelProperty("用户昵称")
+    private String userName;
     @ApiModelProperty("密码")
     private String userPassword;
     @ApiModelProperty("头像")

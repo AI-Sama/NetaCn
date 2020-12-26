@@ -7,6 +7,8 @@
         <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
         <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
         <result column="user_account" jdbcType="VARCHAR" property="userAccount"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_mail" jdbcType="VARCHAR" property="userMail"/>
         <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
         <result column="head_img" jdbcType="VARCHAR" property="headImg"/>
         <result column="user_language" jdbcType="TINYINT" property="userLanguage"/>
@@ -20,7 +22,7 @@
         <result column="spare3" jdbcType="VARCHAR" property="spare3"/>
     </resultMap>
     <sql id="Base_Column_List">
-    user_id, gmt_create, gmt_modified, last_login_time, user_account, user_password, 
+    user_id,user_mail,user_name, gmt_create, gmt_modified, last_login_time, user_account, user_password,
     head_img, user_language, word_limit, up_limit, login_limit, user_power, user_level, 
     spare1, spare2, spare3
   </sql>
@@ -60,6 +62,12 @@
             </if>
             <if test="userAccount != null">
                 user_account,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="userMail != null">
+                user_mail,
             </if>
             <if test="userPassword != null">
                 user_password,
@@ -101,6 +109,12 @@
             </if>
             <if test="userAccount != null">
                 #{userAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userMail != null">
+                #{userMail,jdbcType=VARCHAR},
             </if>
             <if test="userPassword != null">
                 #{userPassword,jdbcType=VARCHAR},
@@ -146,6 +160,12 @@
             <if test="userAccount != null">
                 user_account = #{userAccount,jdbcType=VARCHAR},
             </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userMail != null">
+                user_mail = #{userMail,jdbcType=VARCHAR},
+            </if>
             <if test="userPassword != null">
                 user_password = #{userPassword,jdbcType=VARCHAR},
             </if>
@@ -190,6 +210,12 @@
             </if>
             <if test="userAccount != null">
                 user_account = #{userAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userMail != null">
+                user_mail = #{userMail,jdbcType=VARCHAR},
             </if>
             <if test="userPassword != null">
                 user_password = #{userPassword,jdbcType=VARCHAR},
