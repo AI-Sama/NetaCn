@@ -25,10 +25,18 @@ public class UserController {
     @Autowired
     UserInfoImpl userInfoService;
 
+    @ApiOperation("修改用户信息")
+    @PostMapping(value = "/updateUser", produces = {"application/json;charset=utf-8"})
+    public ResultBean updateUser(@RequestBody UserInfo userInfo) {
+        log.info("修改用户信息：" + userInfo.toString());
+
+        return new ResultBean();
+    }
+
     @ApiOperation("添加用户")
     @PostMapping(value = "/addUser", produces = {"application/json;charset=utf-8"})
     public ResultBean addUser(@RequestBody UserInfo userInfo) {
-        log.info("日志：" + userInfo.toString());
+        log.info("添加用户：" + userInfo.toString());
         switch (userInfoService.addUser(userInfo)) {
             case 0:
                 return new ResultBean(0, "该账号已被注册");
@@ -39,7 +47,6 @@ public class UserController {
     @ApiOperation("登录")
     @PostMapping(value = "/userLogin", produces = {"application/json;charset=utf-8"})
     public ResultBean userLogin(@RequestBody UserInfo userInfo) {
-        log.info("日志：" + userInfo.toString());
         UserInfo returnUser = userInfoService.userLogin(userInfo);
         if (returnUser == null) {
             return new ResultBean(0, "账号或密码错误");
