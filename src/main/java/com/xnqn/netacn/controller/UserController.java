@@ -4,8 +4,6 @@ import com.xnqn.netacn.model.UserInfo;
 import com.xnqn.netacn.service.impl.UserInfoImpl;
 import com.xnqn.netacn.utils.ResultBean;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
