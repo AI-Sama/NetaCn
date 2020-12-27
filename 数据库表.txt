@@ -54,4 +54,3 @@
         spare3 varchar(50) comment '备用字段3'
     );
 
-
