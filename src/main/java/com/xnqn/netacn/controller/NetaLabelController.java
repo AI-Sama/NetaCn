@@ -32,7 +32,7 @@ public class NetaLabelController {
     @ApiOperation("获取全部标签")
     @GetMapping(value = "/getLabels", produces = {"application/json;charset=utf-8"})
     public ResultBean getLabels() {
-        
+
         return new ResultBean(netaLabel.selectLabels());
     }
 }
