@@ -29,7 +29,7 @@
         pinyin varchar(100) comment '拼音',
         katakana varchar(100) comment '音译假名',
         neta_label varchar(100) comment '词语标签',
-        word_shield tinyint unsigned default 0 comment '是否限制',
+        word_shield tinyint unsigned default 1 comment '是否限制',
         neta_date int unsigned comment '出现日期',
         cn_explanation varchar(1000) comment '中文释义',
         jp_explanation varchar(1000) comment '日语释义',
