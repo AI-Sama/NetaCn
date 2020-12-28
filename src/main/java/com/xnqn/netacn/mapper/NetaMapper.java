@@ -13,5 +13,4 @@ public interface NetaMapper {
 
     int updateByPrimaryKeySelective(Neta record);
 
-    int updateByPrimaryKey(Neta record);
 }

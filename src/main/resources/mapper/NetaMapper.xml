@@ -244,27 +244,4 @@
     </set>
     where neta_id = #{netaId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xnqn.netacn.model.Neta">
-    update neta
-    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      neta_word = #{netaWord,jdbcType=VARCHAR},
-      up_user = #{upUser,jdbcType=VARCHAR},
-      pinyin = #{pinyin,jdbcType=VARCHAR},
-      katakana = #{katakana,jdbcType=VARCHAR},
-      neta_label = #{netaLabel,jdbcType=VARCHAR},
-      word_shield = #{wordShield,jdbcType=TINYINT},
-      neta_date = #{netaDate,jdbcType=INTEGER},
-      cn_explanation = #{cnExplanation,jdbcType=VARCHAR},
-      jp_explanation = #{jpExplanation,jdbcType=VARCHAR},
-      neta_status = #{netaStatus,jdbcType=TINYINT},
-      like_num = #{likeNum,jdbcType=INTEGER},
-      look_num = #{lookNum,jdbcType=INTEGER},
-      star_num = #{starNum,jdbcType=INTEGER},
-      reason = #{reason,jdbcType=VARCHAR},
-      spare1 = #{spare1,jdbcType=VARCHAR},
-      spare2 = #{spare2,jdbcType=VARCHAR},
-      spare3 = #{spare3,jdbcType=VARCHAR}
-    where neta_id = #{netaId,jdbcType=INTEGER}
-  </update>
 </mapper>
