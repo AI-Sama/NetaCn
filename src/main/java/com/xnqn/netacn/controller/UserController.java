@@ -65,9 +65,4 @@ public class UserController {
         return new ResultBean(userInfo);
     }
 
-    @ApiOperation("test")
-    @GetMapping(value = "/test", produces = {"application/json;charset=utf-8"})
-    public ResultBean test() {
-        return new ResultBean();
-    }
 }
