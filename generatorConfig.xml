@@ -54,7 +54,7 @@
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
         </javaClientGenerator>
 
-        <table tableName="neta_label"
+        <table tableName="neta"
                enableCountByExample="false"
                enableSelectByExample="false"
                enableDeleteByExample="false"
