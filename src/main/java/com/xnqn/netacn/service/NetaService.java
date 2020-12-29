@@ -8,4 +8,5 @@ package com.xnqn.netacn.service;
  */
 public interface NetaService {
 
+    
 }
