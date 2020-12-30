@@ -51,4 +51,10 @@ public class NetaLabelController {
 
         return new ResultBean(netaLabelimpl.selectLabels());
     }
+    @ApiOperation("模糊查询标签")
+    @GetMapping(value = "/getLabel", produces = {"application/json;charset=utf-8"})
+    public ResultBean getLabel(@RequestBody String LabelName) {
+        //todo 模糊查询标签
+        return new ResultBean();
+    }
 }
