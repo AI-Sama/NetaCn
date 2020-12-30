@@ -6,7 +6,9 @@ import com.xnqn.netacn.service.NetaLabelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @ProjectName: netacn
@@ -21,8 +23,23 @@ public class NetaLabelImpl implements NetaLabelService {
     NetaLabelMapper netaLabelMapper;
 
     @Override
-    public void addLabel(NetaLabel netaLabel) {
-        netaLabelMapper.insert(netaLabel);
+    public void addLabel(List<NetaLabel> netaLabels) {
+        List<NetaLabel> selectLabels = Optional.ofNullable(netaLabelMapper.selectLabelsByLabelName(netaLabels)).orElse(new ArrayList<>());
+        for (int x = 0; x < selectLabels.size(); x++) {
+            //已有标签直接返回id
+            NetaLabel var1 = selectLabels.get(x);
+            for (int y = 0; y < netaLabels.size(); y++) {
+                NetaLabel var2 = netaLabels.get(y);
+                if (var1.getCnWord().equals(var2.getCnWord())) {
+                    var2.setLabelId(var1.getLabelId());
+                    break;
+                }
+            }
+        }
+        if(netaLabels.size()>selectLabels.size()){
+            //批量插入
+            netaLabelMapper.insert(netaLabels);
+        }
     }
 
     @Override
@@ -42,7 +59,7 @@ public class NetaLabelImpl implements NetaLabelService {
 
     @Override
     public List<NetaLabel> selectLabels() {
-        List<NetaLabel> labels=netaLabelMapper.selectLabels();
+        List<NetaLabel> labels = netaLabelMapper.selectLabels();
         return labels;
     }
 }

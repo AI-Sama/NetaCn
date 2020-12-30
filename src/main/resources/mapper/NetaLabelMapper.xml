@@ -20,6 +20,15 @@
         from neta_label
         where label_id = #{labelId,jdbcType=INTEGER}
     </select>
+    <select id="selectLabelsByLabelName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from neta_label
+        where
+        <foreach collection="netaLabels" item="netaLabel" open="cn_word=" separator="or cn_word=">
+            #{netaLabel.cnWord,jdbcType=VARCHAR}
+        </foreach>
+    </select>
     <select id="selectLabels" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -30,14 +39,22 @@
     delete from neta_label
     where label_id = #{labelId,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.xnqn.netacn.model.NetaLabel" useGeneratedKeys="true" keyProperty="label_id" keyColumn="labelId">
-    insert into neta_label (
-      cn_word, jp_word, spare1, 
-      spare2, spare3)
-    values (
-      #{cnWord,jdbcType=VARCHAR}, #{jpWord,jdbcType=VARCHAR}, #{spare1,jdbcType=VARCHAR}, 
-      #{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR})
-  </insert>
+    <insert id="insert"  useGeneratedKeys="true" keyProperty="labelId"
+            keyColumn="labelId">
+        insert into neta_label (
+        cn_word, jp_word, spare1,
+        spare2, spare3)
+        values
+        <foreach collection="records" item="label" index="i">
+            <if test="label.labelId == null">
+                <if test="i != 0">
+                    ,
+                </if>
+                ( #{label.cnWord,jdbcType=VARCHAR}, #{label.jpWord,jdbcType=VARCHAR}, #{label.spare1,jdbcType=VARCHAR},
+                #{label.spare2,jdbcType=VARCHAR}, #{label.spare3,jdbcType=VARCHAR})
+            </if>
+        </foreach>
+    </insert>
     <insert id="insertSelective" parameterType="com.xnqn.netacn.model.NetaLabel">
         insert into neta_label
         <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -5,8 +5,12 @@ import com.xnqn.netacn.service.impl.NetaLabelImpl;
 import com.xnqn.netacn.utils.ResultBean;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ProjectName: netacn
@@ -17,15 +21,27 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/label")
 @Api(tags = "标签模块")
+@Slf4j
 public class NetaLabelController {
 
     @Autowired
-    NetaLabelImpl netaLabel;
+    NetaLabelImpl netaLabelimpl;
 
     @ApiOperation("添加标签")
     @PostMapping(value = "/addLabel", produces = {"application/json;charset=utf-8"})
-    public ResultBean addLabel(@RequestBody NetaLabel netaLabel) {
+    public ResultBean addLabel() {
         //todo 添加标签
+        List<NetaLabel> labels=new ArrayList<>();
+        NetaLabel netaLabel=new NetaLabel();
+        netaLabel.setCnWord("测试3");
+        netaLabel.setJpWord("Test3");
+        NetaLabel netaLabe2=new NetaLabel();
+        netaLabe2.setCnWord("测试4");
+        netaLabe2.setJpWord("Test4");
+        labels.add(netaLabel);
+        labels.add(netaLabe2);
+        log.info(labels.toString());
+        netaLabelimpl.addLabel(labels);
         return new ResultBean();
     }
 
@@ -33,6 +49,6 @@ public class NetaLabelController {
     @GetMapping(value = "/getLabels", produces = {"application/json;charset=utf-8"})
     public ResultBean getLabels() {
 
-        return new ResultBean(netaLabel.selectLabels());
+        return new ResultBean(netaLabelimpl.selectLabels());
     }
 }

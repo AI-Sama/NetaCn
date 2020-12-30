@@ -12,7 +12,7 @@ import java.util.List;
  * @Description:
  */
 public interface NetaLabelService {
-    void addLabel(NetaLabel netaLabel);
+    void addLabel(List<NetaLabel> netaLabel);
     void deleteLabel(NetaLabel netaLabel);
     void updateLabel(NetaLabel netaLabel);
     NetaLabel selectLabel(String cn_word);
