@@ -22,4 +22,5 @@ public interface NetaLabelMapper {
 
     List<NetaLabel> selectLabels();
     List<NetaLabel> selectLabelsByLabelName(@Param("netaLabels") List<NetaLabel> netaLabels);
+    List<NetaLabel> fuzzySelectLabels(String labelName);
 }

@@ -20,6 +20,13 @@
         from neta_label
         where label_id = #{labelId,jdbcType=INTEGER}
     </select>
+
+    <select id="fuzzySelectLabels" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from neta_label
+        where cn_word like "%"#{cnWord,jdbcType=VARCHAR}"%"
+    </select>
     <select id="selectLabelsByLabelName" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

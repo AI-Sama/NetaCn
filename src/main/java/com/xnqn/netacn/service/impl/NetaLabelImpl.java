@@ -62,4 +62,9 @@ public class NetaLabelImpl implements NetaLabelService {
         List<NetaLabel> labels = netaLabelMapper.selectLabels();
         return labels;
     }
+
+    @Override
+    public List<NetaLabel> fuzzySelectLabels(String labelName) {
+        return netaLabelMapper.fuzzySelectLabels(labelName);
+    }
 }
