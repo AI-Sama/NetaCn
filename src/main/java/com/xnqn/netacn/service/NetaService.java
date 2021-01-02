@@ -13,4 +13,5 @@ import java.util.List;
 public interface NetaService {
     void  addNeta(Neta neta);
     List<Neta> selectNeta(Integer statusCode);
+    Neta selectFullNeta(Integer netaId);
 }

@@ -29,6 +29,7 @@ public class NetaController {
     NetaImpl netaimpl;
     @Autowired
     NetaLabelImpl netaLabel;
+
     @ApiOperation("测试方法")
     @GetMapping(value = "/test", produces = {"application/json;charset=utf-8"})
     public ResultBean test() {
@@ -41,16 +42,16 @@ public class NetaController {
         neta.setUpUser((String) httpServletRequest.getAttribute("userAccount"));
         String label = neta.getNetaLabel();
         String[] labels = label.split("\\|");
-        ArrayList<NetaLabel> labelArrayList=new ArrayList<>();
-        for(int x=0;x<labels.length;x++){
+        ArrayList<NetaLabel> labelArrayList = new ArrayList<>();
+        for (int x = 0; x < labels.length; x++) {
             labelArrayList.add(new NetaLabel(labels[x]));
         }
         netaLabel.addLabel(labelArrayList);
-        label="";
-        for(int x=0;x<labelArrayList.size();x++){
-            label+=labelArrayList.get(x).getLabelId();
-            if(x!=labelArrayList.size()-1){
-                label+="|";
+        label = "";
+        for (int x = 0; x < labelArrayList.size(); x++) {
+            label += labelArrayList.get(x).getLabelId();
+            if (x != labelArrayList.size() - 1) {
+                label += "|";
             }
         }
         neta.setNetaLabel(label);
@@ -62,5 +63,11 @@ public class NetaController {
     @GetMapping(value = "/selectNeta", produces = {"application/json;charset=utf-8"})
     public ResultBean selectNeta(Integer statusCode) {
         return new ResultBean(netaimpl.selectNeta(statusCode));
+    }
+
+    @ApiOperation("查找详细资料")
+    @GetMapping(value = "/selectFullNeta", produces = {"application/json;charset=utf-8"})
+    public ResultBean selectFullNeta(Integer netaId) {
+        return new ResultBean(netaimpl.selectFullNeta(netaId));
     }
 }

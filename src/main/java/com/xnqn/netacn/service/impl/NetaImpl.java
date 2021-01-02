@@ -32,4 +32,9 @@ public class NetaImpl implements NetaService {
     public List<Neta> selectNeta(Integer statusCode) {
         return netaMapper.selectByStatusCode(statusCode);
     }
+
+    @Override
+    public Neta selectFullNeta(Integer netaId) {
+        return netaMapper.selectByPrimaryKey(netaId);
+    }
 }

@@ -18,4 +18,5 @@ public interface NetaLabelService {
     NetaLabel selectLabel(String cn_word);
     List<NetaLabel> selectLabels();
     List<NetaLabel> fuzzySelectLabels(String labelName);
+
 }
