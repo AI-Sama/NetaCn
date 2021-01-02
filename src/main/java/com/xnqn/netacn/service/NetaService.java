@@ -1,5 +1,7 @@
 package com.xnqn.netacn.service;
 
+import com.xnqn.netacn.model.Neta;
+
 /**
  * @ProjectName: netacn
  * @Author: ZhangXiangQiang
@@ -7,6 +9,6 @@ package com.xnqn.netacn.service;
  * @Description:
  */
 public interface NetaService {
-
+    void  addNeta(Neta neta);
 
 }

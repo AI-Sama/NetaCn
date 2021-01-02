@@ -19,4 +19,10 @@ public class NetaLabel {
     private String spare1;
     private String spare2;
     private String spare3;
+    public NetaLabel(){
+
+    }
+    public NetaLabel(String labelName){
+        this.cnWord=labelName;
+    }
 }

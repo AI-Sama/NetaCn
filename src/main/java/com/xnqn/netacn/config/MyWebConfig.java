@@ -20,6 +20,7 @@ public class MyWebConfig implements WebMvcConfigurer {
         //添加拦截器路径
         registry.addInterceptor(new UserInterceptor())
                 .addPathPatterns("/user/**")//添加的拦截器路径
+                .addPathPatterns("/neta/**")
                 .excludePathPatterns("/user/userLogin");//排除的路径
     }
 

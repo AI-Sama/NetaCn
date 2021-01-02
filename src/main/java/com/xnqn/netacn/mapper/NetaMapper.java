@@ -1,7 +1,11 @@
 package com.xnqn.netacn.mapper;
 
 import com.xnqn.netacn.model.Neta;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Mapper
+@Repository
 public interface NetaMapper {
     int deleteByPrimaryKey(Integer netaId);
 
