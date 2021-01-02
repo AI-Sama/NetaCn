@@ -13,7 +13,7 @@ public class Neta {
 
     private Date gmtCreate;
 
-    private Date gmtModified;
+    private Date gmtModified; 
     @ApiModelProperty("词语")
     private String netaWord;
     @ApiModelProperty("上传人")
