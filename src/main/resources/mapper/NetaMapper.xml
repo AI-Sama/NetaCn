@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xnqn.netacn.mapper.NetaMapper">
-  <resultMap id="BaseResultMap" type="com.xnqn.netacn.model.Neta">
-    <id column="neta_id" jdbcType="INTEGER" property="netaId" />
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
-    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
-    <result column="neta_word" jdbcType="VARCHAR" property="netaWord" />
-    <result column="up_user" jdbcType="VARCHAR" property="upUser" />
-    <result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
-    <result column="katakana" jdbcType="VARCHAR" property="katakana" />
-    <result column="neta_label" jdbcType="VARCHAR" property="netaLabel" />
-    <result column="word_shield" jdbcType="TINYINT" property="wordShield" />
-    <result column="neta_date" jdbcType="INTEGER" property="netaDate" />
-    <result column="cn_explanation" jdbcType="VARCHAR" property="cnExplanation" />
-    <result column="jp_explanation" jdbcType="VARCHAR" property="jpExplanation" />
-    <result column="neta_status" jdbcType="TINYINT" property="netaStatus" />
-    <result column="like_num" jdbcType="INTEGER" property="likeNum" />
-    <result column="look_num" jdbcType="INTEGER" property="lookNum" />
-    <result column="star_num" jdbcType="INTEGER" property="starNum" />
-    <result column="reason" jdbcType="VARCHAR" property="reason" />
-    <result column="spare1" jdbcType="VARCHAR" property="spare1" />
-    <result column="spare2" jdbcType="VARCHAR" property="spare2" />
-    <result column="spare3" jdbcType="VARCHAR" property="spare3" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    neta_id, gmt_create, gmt_modified, neta_word, up_user, pinyin, katakana, neta_label, 
-    word_shield, neta_date, cn_explanation, jp_explanation, neta_status, like_num, look_num, 
+    <resultMap id="BaseResultMap" type="com.xnqn.netacn.model.Neta">
+        <id column="neta_id" jdbcType="INTEGER" property="netaId"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        <result column="neta_word" jdbcType="VARCHAR" property="netaWord"/>
+        <result column="up_user" jdbcType="VARCHAR" property="upUser"/>
+        <result column="pinyin" jdbcType="VARCHAR" property="pinyin"/>
+        <result column="katakana" jdbcType="VARCHAR" property="katakana"/>
+        <result column="neta_label" jdbcType="VARCHAR" property="netaLabel"/>
+        <result column="word_shield" jdbcType="TINYINT" property="wordShield"/>
+        <result column="neta_date" jdbcType="INTEGER" property="netaDate"/>
+        <result column="cn_explanation" jdbcType="VARCHAR" property="cnExplanation"/>
+        <result column="jp_explanation" jdbcType="VARCHAR" property="jpExplanation"/>
+        <result column="neta_status" jdbcType="TINYINT" property="netaStatus"/>
+        <result column="like_num" jdbcType="INTEGER" property="likeNum"/>
+        <result column="look_num" jdbcType="INTEGER" property="lookNum"/>
+        <result column="star_num" jdbcType="INTEGER" property="starNum"/>
+        <result column="reason" jdbcType="VARCHAR" property="reason"/>
+        <result column="spare1" jdbcType="VARCHAR" property="spare1"/>
+        <result column="spare2" jdbcType="VARCHAR" property="spare2"/>
+        <result column="spare3" jdbcType="VARCHAR" property="spare3"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    neta_id, gmt_create, gmt_modified, neta_word, up_user, pinyin, katakana, neta_label,
+    word_shield, neta_date, cn_explanation, jp_explanation, neta_status, like_num, look_num,
     star_num, reason, spare1, spare2, spare3
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from neta
-    where neta_id = #{netaId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <sql id="simple_list">
+    neta_id,  neta_word, up_user, pinyin, katakana, neta_label,
+    word_shield, neta_date, neta_status, like_num, look_num,
+    star_num, reason, spare1, spare2, spare3
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from neta
+        where neta_id = #{netaId,jdbcType=INTEGER}
+    </select>
+    <select id="selectByStatusCode" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="simple_list"/>
+        from neta
+        where neta_status = #{netaStatus,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from neta
     where neta_id = #{netaId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xnqn.netacn.model.Neta">
+    <insert id="insert" parameterType="com.xnqn.netacn.model.Neta">
     insert into neta (neta_id, gmt_create, gmt_modified, 
       neta_word, up_user, pinyin, 
       katakana, neta_label, word_shield, 
@@ -54,194 +65,194 @@
       #{starNum,jdbcType=INTEGER}, #{reason,jdbcType=VARCHAR}, #{spare1,jdbcType=VARCHAR}, 
       #{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xnqn.netacn.model.Neta">
-    insert into neta
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="netaId != null">
-        neta_id,
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
-      </if>
-      <if test="netaWord != null">
-        neta_word,
-      </if>
-      <if test="upUser != null">
-        up_user,
-      </if>
-      <if test="pinyin != null">
-        pinyin,
-      </if>
-      <if test="katakana != null">
-        katakana,
-      </if>
-      <if test="netaLabel != null">
-        neta_label,
-      </if>
-      <if test="wordShield != null">
-        word_shield,
-      </if>
-      <if test="netaDate != null">
-        neta_date,
-      </if>
-      <if test="cnExplanation != null">
-        cn_explanation,
-      </if>
-      <if test="jpExplanation != null">
-        jp_explanation,
-      </if>
-      <if test="netaStatus != null">
-        neta_status,
-      </if>
-      <if test="likeNum != null">
-        like_num,
-      </if>
-      <if test="lookNum != null">
-        look_num,
-      </if>
-      <if test="starNum != null">
-        star_num,
-      </if>
-      <if test="reason != null">
-        reason,
-      </if>
-      <if test="spare1 != null">
-        spare1,
-      </if>
-      <if test="spare2 != null">
-        spare2,
-      </if>
-      <if test="spare3 != null">
-        spare3,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="netaId != null">
-        #{netaId,jdbcType=INTEGER},
-      </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="netaWord != null">
-        #{netaWord,jdbcType=VARCHAR},
-      </if>
-      <if test="upUser != null">
-        #{upUser,jdbcType=VARCHAR},
-      </if>
-      <if test="pinyin != null">
-        #{pinyin,jdbcType=VARCHAR},
-      </if>
-      <if test="katakana != null">
-        #{katakana,jdbcType=VARCHAR},
-      </if>
-      <if test="netaLabel != null">
-        #{netaLabel,jdbcType=VARCHAR},
-      </if>
-      <if test="wordShield != null">
-        #{wordShield,jdbcType=TINYINT},
-      </if>
-      <if test="netaDate != null">
-        #{netaDate,jdbcType=INTEGER},
-      </if>
-      <if test="cnExplanation != null">
-        #{cnExplanation,jdbcType=VARCHAR},
-      </if>
-      <if test="jpExplanation != null">
-        #{jpExplanation,jdbcType=VARCHAR},
-      </if>
-      <if test="netaStatus != null">
-        #{netaStatus,jdbcType=TINYINT},
-      </if>
-      <if test="likeNum != null">
-        #{likeNum,jdbcType=INTEGER},
-      </if>
-      <if test="lookNum != null">
-        #{lookNum,jdbcType=INTEGER},
-      </if>
-      <if test="starNum != null">
-        #{starNum,jdbcType=INTEGER},
-      </if>
-      <if test="reason != null">
-        #{reason,jdbcType=VARCHAR},
-      </if>
-      <if test="spare1 != null">
-        #{spare1,jdbcType=VARCHAR},
-      </if>
-      <if test="spare2 != null">
-        #{spare2,jdbcType=VARCHAR},
-      </if>
-      <if test="spare3 != null">
-        #{spare3,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xnqn.netacn.model.Neta">
-    update neta
-    <set>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="netaWord != null">
-        neta_word = #{netaWord,jdbcType=VARCHAR},
-      </if>
-      <if test="upUser != null">
-        up_user = #{upUser,jdbcType=VARCHAR},
-      </if>
-      <if test="pinyin != null">
-        pinyin = #{pinyin,jdbcType=VARCHAR},
-      </if>
-      <if test="katakana != null">
-        katakana = #{katakana,jdbcType=VARCHAR},
-      </if>
-      <if test="netaLabel != null">
-        neta_label = #{netaLabel,jdbcType=VARCHAR},
-      </if>
-      <if test="wordShield != null">
-        word_shield = #{wordShield,jdbcType=TINYINT},
-      </if>
-      <if test="netaDate != null">
-        neta_date = #{netaDate,jdbcType=INTEGER},
-      </if>
-      <if test="cnExplanation != null">
-        cn_explanation = #{cnExplanation,jdbcType=VARCHAR},
-      </if>
-      <if test="jpExplanation != null">
-        jp_explanation = #{jpExplanation,jdbcType=VARCHAR},
-      </if>
-      <if test="netaStatus != null">
-        neta_status = #{netaStatus,jdbcType=TINYINT},
-      </if>
-      <if test="likeNum != null">
-        like_num = #{likeNum,jdbcType=INTEGER},
-      </if>
-      <if test="lookNum != null">
-        look_num = #{lookNum,jdbcType=INTEGER},
-      </if>
-      <if test="starNum != null">
-        star_num = #{starNum,jdbcType=INTEGER},
-      </if>
-      <if test="reason != null">
-        reason = #{reason,jdbcType=VARCHAR},
-      </if>
-      <if test="spare1 != null">
-        spare1 = #{spare1,jdbcType=VARCHAR},
-      </if>
-      <if test="spare2 != null">
-        spare2 = #{spare2,jdbcType=VARCHAR},
-      </if>
-      <if test="spare3 != null">
-        spare3 = #{spare3,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where neta_id = #{netaId,jdbcType=INTEGER}
-  </update>
+    <insert id="insertSelective" parameterType="com.xnqn.netacn.model.Neta">
+        insert into neta
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="netaId != null">
+                neta_id,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="netaWord != null">
+                neta_word,
+            </if>
+            <if test="upUser != null">
+                up_user,
+            </if>
+            <if test="pinyin != null">
+                pinyin,
+            </if>
+            <if test="katakana != null">
+                katakana,
+            </if>
+            <if test="netaLabel != null">
+                neta_label,
+            </if>
+            <if test="wordShield != null">
+                word_shield,
+            </if>
+            <if test="netaDate != null">
+                neta_date,
+            </if>
+            <if test="cnExplanation != null">
+                cn_explanation,
+            </if>
+            <if test="jpExplanation != null">
+                jp_explanation,
+            </if>
+            <if test="netaStatus != null">
+                neta_status,
+            </if>
+            <if test="likeNum != null">
+                like_num,
+            </if>
+            <if test="lookNum != null">
+                look_num,
+            </if>
+            <if test="starNum != null">
+                star_num,
+            </if>
+            <if test="reason != null">
+                reason,
+            </if>
+            <if test="spare1 != null">
+                spare1,
+            </if>
+            <if test="spare2 != null">
+                spare2,
+            </if>
+            <if test="spare3 != null">
+                spare3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="netaId != null">
+                #{netaId,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="netaWord != null">
+                #{netaWord,jdbcType=VARCHAR},
+            </if>
+            <if test="upUser != null">
+                #{upUser,jdbcType=VARCHAR},
+            </if>
+            <if test="pinyin != null">
+                #{pinyin,jdbcType=VARCHAR},
+            </if>
+            <if test="katakana != null">
+                #{katakana,jdbcType=VARCHAR},
+            </if>
+            <if test="netaLabel != null">
+                #{netaLabel,jdbcType=VARCHAR},
+            </if>
+            <if test="wordShield != null">
+                #{wordShield,jdbcType=TINYINT},
+            </if>
+            <if test="netaDate != null">
+                #{netaDate,jdbcType=INTEGER},
+            </if>
+            <if test="cnExplanation != null">
+                #{cnExplanation,jdbcType=VARCHAR},
+            </if>
+            <if test="jpExplanation != null">
+                #{jpExplanation,jdbcType=VARCHAR},
+            </if>
+            <if test="netaStatus != null">
+                #{netaStatus,jdbcType=TINYINT},
+            </if>
+            <if test="likeNum != null">
+                #{likeNum,jdbcType=INTEGER},
+            </if>
+            <if test="lookNum != null">
+                #{lookNum,jdbcType=INTEGER},
+            </if>
+            <if test="starNum != null">
+                #{starNum,jdbcType=INTEGER},
+            </if>
+            <if test="reason != null">
+                #{reason,jdbcType=VARCHAR},
+            </if>
+            <if test="spare1 != null">
+                #{spare1,jdbcType=VARCHAR},
+            </if>
+            <if test="spare2 != null">
+                #{spare2,jdbcType=VARCHAR},
+            </if>
+            <if test="spare3 != null">
+                #{spare3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xnqn.netacn.model.Neta">
+        update neta
+        <set>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="netaWord != null">
+                neta_word = #{netaWord,jdbcType=VARCHAR},
+            </if>
+            <if test="upUser != null">
+                up_user = #{upUser,jdbcType=VARCHAR},
+            </if>
+            <if test="pinyin != null">
+                pinyin = #{pinyin,jdbcType=VARCHAR},
+            </if>
+            <if test="katakana != null">
+                katakana = #{katakana,jdbcType=VARCHAR},
+            </if>
+            <if test="netaLabel != null">
+                neta_label = #{netaLabel,jdbcType=VARCHAR},
+            </if>
+            <if test="wordShield != null">
+                word_shield = #{wordShield,jdbcType=TINYINT},
+            </if>
+            <if test="netaDate != null">
+                neta_date = #{netaDate,jdbcType=INTEGER},
+            </if>
+            <if test="cnExplanation != null">
+                cn_explanation = #{cnExplanation,jdbcType=VARCHAR},
+            </if>
+            <if test="jpExplanation != null">
+                jp_explanation = #{jpExplanation,jdbcType=VARCHAR},
+            </if>
+            <if test="netaStatus != null">
+                neta_status = #{netaStatus,jdbcType=TINYINT},
+            </if>
+            <if test="likeNum != null">
+                like_num = #{likeNum,jdbcType=INTEGER},
+            </if>
+            <if test="lookNum != null">
+                look_num = #{lookNum,jdbcType=INTEGER},
+            </if>
+            <if test="starNum != null">
+                star_num = #{starNum,jdbcType=INTEGER},
+            </if>
+            <if test="reason != null">
+                reason = #{reason,jdbcType=VARCHAR},
+            </if>
+            <if test="spare1 != null">
+                spare1 = #{spare1,jdbcType=VARCHAR},
+            </if>
+            <if test="spare2 != null">
+                spare2 = #{spare2,jdbcType=VARCHAR},
+            </if>
+            <if test="spare3 != null">
+                spare3 = #{spare3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where neta_id = #{netaId,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -57,4 +57,10 @@ public class NetaController {
         netaimpl.addNeta(neta);
         return new ResultBean();
     }
+
+    @ApiOperation("查找neta")
+    @GetMapping(value = "/selectNeta", produces = {"application/json;charset=utf-8"})
+    public ResultBean selectNeta(Integer statusCode) {
+        return new ResultBean(netaimpl.selectNeta(statusCode));
+    }
 }

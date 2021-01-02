@@ -2,6 +2,8 @@ package com.xnqn.netacn.service;
 
 import com.xnqn.netacn.model.Neta;
 
+import java.util.List;
+
 /**
  * @ProjectName: netacn
  * @Author: ZhangXiangQiang
@@ -10,5 +12,5 @@ import com.xnqn.netacn.model.Neta;
  */
 public interface NetaService {
     void  addNeta(Neta neta);
-
+    List<Neta> selectNeta(Integer statusCode);
 }

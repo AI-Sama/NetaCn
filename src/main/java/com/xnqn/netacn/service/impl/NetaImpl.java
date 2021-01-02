@@ -7,6 +7,8 @@ import com.xnqn.netacn.service.NetaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ProjectName: netacn
  * @Author: ZhangXiangQiang
@@ -24,5 +26,10 @@ public class NetaImpl implements NetaService {
             neta.setNetaDate(null);
         }
         netaMapper.insertSelective(neta);
+    }
+
+    @Override
+    public List<Neta> selectNeta(Integer statusCode) {
+        return netaMapper.selectByStatusCode(statusCode);
     }
 }

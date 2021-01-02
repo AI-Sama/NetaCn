@@ -4,6 +4,8 @@ import com.xnqn.netacn.model.Neta;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface NetaMapper {
@@ -16,5 +18,7 @@ public interface NetaMapper {
     Neta selectByPrimaryKey(Integer netaId);
 
     int updateByPrimaryKeySelective(Neta record);
+
+    List<Neta> selectByStatusCode(Integer netaStatus);
 
 }
