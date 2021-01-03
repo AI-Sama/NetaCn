@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ProjectName: netacn
@@ -59,10 +60,10 @@ public class NetaController {
         return new ResultBean();
     }
 
+
     @ApiOperation("查找neta")
     @GetMapping(value = "/selectNeta", produces = {"application/json;charset=utf-8"})
     public ResultBean selectNeta(Integer statusCode) {
-        System.out.println(statusCode);
         return new ResultBean(netaimpl.selectNeta(statusCode));
     }
 
@@ -70,5 +71,11 @@ public class NetaController {
     @GetMapping(value = "/selectFullNeta", produces = {"application/json;charset=utf-8"})
     public ResultBean selectFullNeta(Integer netaId) {
         return new ResultBean(netaimpl.selectFullNeta(netaId));
+    }
+    @ApiOperation("更新状态")
+    @PostMapping(value = "/updateNetaStatus", produces = {"application/json;charset=utf-8"})
+    public ResultBean updateNetaStatus(@RequestBody List<Neta> netas) {
+        log.info(netas.toString());
+        return new ResultBean();
     }
 }

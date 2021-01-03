@@ -74,7 +74,6 @@ public class UserInfoImpl implements UserInfoService {
                 //登录成功
                 getUser.setUserPassword(null);
                 getUser.setSpare1(TokenUtils.getJwtToken(getUser.getUserAccount()));
-                System.out.println(getUser);
                 return getUser;
             }
         }
