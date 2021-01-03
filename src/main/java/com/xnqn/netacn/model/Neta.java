@@ -22,7 +22,7 @@ public class Neta {
     private String pinyin;
     @ApiModelProperty("假名注音")
     private String katakana;
-    @ApiModelProperty("标签，多个用|隔开")
+    @ApiModelProperty("标签id，多个用|隔开")
     private String netaLabel;
     @ApiModelProperty("是否限制，默认1限制")
     private Byte wordShield;
@@ -42,6 +42,8 @@ public class Neta {
     private Integer starNum;
     @ApiModelProperty("拒绝原因")
     private String reason;
+    @ApiModelProperty("标签具体,cn和jp用|隔开")
+    private String[] labels;
 
     private String spare1;
 
