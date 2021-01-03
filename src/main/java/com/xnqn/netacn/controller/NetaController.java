@@ -62,6 +62,7 @@ public class NetaController {
     @ApiOperation("查找neta")
     @GetMapping(value = "/selectNeta", produces = {"application/json;charset=utf-8"})
     public ResultBean selectNeta(Integer statusCode) {
+        System.out.println(statusCode);
         return new ResultBean(netaimpl.selectNeta(statusCode));
     }
 

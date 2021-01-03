@@ -22,16 +22,20 @@ public class UserInterceptor implements HandlerInterceptor {
 //        }
         String token = request.getHeader("token");
         if (token == null || token.trim().length() <= 0) {
-            // 重定向
-            response.sendRedirect("/error/errorToken");
+            //token为空
+            request.setAttribute("code", -1);
+            request.getRequestDispatcher("/error/errorToken").forward(request, response);
             return false;
         }
-        String userAccount = TokenUtils.verifyToken(token);
-        if (userAccount != null) {
-            request.setAttribute("userAccount", userAccount);
-            return true;
+        String userAccount = TokenUtils.verifyToken(token); // 校验
+        if (userAccount == null) {
+            //token过期||解析失败
+            request.setAttribute("code", -2);
+            request.getRequestDispatcher("/error/errorToken").forward(request, response);
+            return false;
         }
-        return false;
+        request.setAttribute("userAccount", userAccount);
+        return true;
     }
 
     @Override
