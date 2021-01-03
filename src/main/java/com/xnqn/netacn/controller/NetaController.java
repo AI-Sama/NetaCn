@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @ProjectName: netacn
@@ -45,6 +43,9 @@ public class NetaController {
         neta.setUpUser((String) httpServletRequest.getAttribute("userAccount"));
         String label = neta.getNetaLabel();
         String[] labels = label.split("\\|");
+        if (labels.length > 5) {
+            return new ResultBean(0, "标签最多只能有5个");
+        }
         ArrayList<NetaLabel> labelArrayList = new ArrayList<>();
         for (int x = 0; x < labels.length; x++) {
             labelArrayList.add(new NetaLabel(labels[x]));
@@ -74,6 +75,7 @@ public class NetaController {
     public ResultBean selectFullNeta(Integer netaId) {
         return new ResultBean(netaimpl.selectFullNeta(netaId));
     }
+
     @ApiOperation("更新状态")
     @PostMapping(value = "/updateNetaStatus", produces = {"application/json;charset=utf-8"})
     public ResultBean updateNetaStatus(@RequestBody List<Neta> netas) {
