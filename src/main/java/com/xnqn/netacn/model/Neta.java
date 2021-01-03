@@ -51,4 +51,14 @@ public class Neta {
 
     private String spare3;
 
+    public Neta() {
+
+    }
+
+    public Neta(Integer netaId, Byte netaStatus, String reason) {
+        this.netaId = netaId;
+        this.netaStatus = netaStatus;
+        this.reason = reason;
+    }
+
 }

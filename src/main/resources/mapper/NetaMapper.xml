@@ -255,4 +255,20 @@
         </set>
         where neta_id = #{netaId,jdbcType=INTEGER}
     </update>
+
+    <update id="changeNetaStatus">
+          update neta
+        <set>
+            <if test="netaStatus != null">
+                neta_status = #{netaStatus,jdbcType=TINYINT},
+            </if>
+            <if test="reason != null">
+                reason = #{reason,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where
+        <foreach collection="netas" item="n" separator="or ">
+            neta_id=#{n.netaId,jdbcType=INTEGER}
+        </foreach>
+    </update>
 </mapper>

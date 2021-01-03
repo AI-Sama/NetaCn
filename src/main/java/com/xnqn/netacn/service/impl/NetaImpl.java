@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @ProjectName: netacn
@@ -58,5 +56,17 @@ public class NetaImpl implements NetaService {
         }
         neta.setLabels(strings);
         return neta;
+    }
+
+    @Override
+    public void changeNetaStatus(List<Neta> netas) {
+        if(netas.size()<=0){
+            return;
+        }
+        for(int x=0;x<netas.size();x++){
+            Neta n=netas.get(x);
+            netas.set(x,new Neta(n.getNetaId(),n.getNetaStatus(),n.getReason()));
+        }
+        netaMapper.changeNetaStatus(netas,(int)netas.get(0).getNetaStatus(),netas.get(0).getReason());
     }
 }

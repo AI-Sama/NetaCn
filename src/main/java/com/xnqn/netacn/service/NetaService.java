@@ -14,4 +14,5 @@ public interface NetaService {
     void  addNeta(Neta neta);
     List<Neta> selectNeta(Integer statusCode);
     Neta selectFullNeta(Integer netaId);
+    void changeNetaStatus(List<Neta> netas);
 }

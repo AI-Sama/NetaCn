@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @ProjectName: netacn
@@ -76,6 +78,7 @@ public class NetaController {
     @PostMapping(value = "/updateNetaStatus", produces = {"application/json;charset=utf-8"})
     public ResultBean updateNetaStatus(@RequestBody List<Neta> netas) {
         log.info(netas.toString());
+        netaimpl.changeNetaStatus(netas);
         return new ResultBean();
     }
 }

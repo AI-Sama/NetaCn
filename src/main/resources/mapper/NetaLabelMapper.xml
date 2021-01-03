@@ -41,8 +41,8 @@
         <include refid="Base_Column_List"/>
         from neta_label
         where
-        <foreach collection="netaIds" item="netaId" open="label_id=" separator="or label_id=">
-            #{netaId,jdbcType=INTEGER}
+        <foreach collection="netaIds" item="netaId" open="label_id=" separator="or ">
+            label_id=#{netaId,jdbcType=INTEGER}
         </foreach>
     </select>
     <select id="selectLabels" resultMap="BaseResultMap">

@@ -2,6 +2,7 @@ package com.xnqn.netacn.mapper;
 
 import com.xnqn.netacn.model.Neta;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,4 +22,5 @@ public interface NetaMapper {
 
     List<Neta> selectByStatusCode(Integer netaStatus);
 
+    int changeNetaStatus(@Param("netas") List<Neta> netas,@Param("netaStatus")Integer netaStatus,@Param("reason")String reason);
 }
