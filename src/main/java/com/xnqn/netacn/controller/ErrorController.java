@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Description:
  */
 @RestController
-@Api("错误控制器")
+@Api(tags ="错误控制器")
 @RequestMapping("/error")
 public class ErrorController {
 

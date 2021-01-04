@@ -1,5 +1,6 @@
 package com.xnqn.netacn.controller;
 
+import com.xnqn.netacn.model.PageInfo;
 import com.xnqn.netacn.model.UserInfo;
 import com.xnqn.netacn.service.impl.UserInfoImpl;
 import com.xnqn.netacn.utils.ResultBean;
@@ -57,7 +58,7 @@ public class UserController {
         return new ResultBean(returnUser);
     }
 
-    @ApiOperation("查找用户信息")
+    @ApiOperation("查找单个用户信息")
     @GetMapping(value = "/getUserInfo", produces = {"application/json;charset=utf-8"})
     public ResultBean getUserInfo(HttpServletRequest httpServletRequest) {
         UserInfo userInfo = userInfoService.selectUser(httpServletRequest.getAttribute("userAccount").toString());
@@ -65,4 +66,9 @@ public class UserController {
         return new ResultBean(userInfo);
     }
 
+    @ApiOperation("查找全部用户信息")
+    @GetMapping(value = "/getUsers", produces = {"application/json;charset=utf-8"})
+    public ResultBean getUsers(Integer pageNum,Integer pageSize) {
+        return new ResultBean(userInfoService.selectUsers(new PageInfo(pageNum,pageSize)));
+    }
 }

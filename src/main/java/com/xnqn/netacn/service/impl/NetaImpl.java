@@ -50,9 +50,9 @@ public class NetaImpl implements NetaService {
             list.add(Integer.parseInt(s));
         }
         List<NetaLabel> labels = netaLabelMapper.selectLabelsById(list);
-        String[] strings=new String[labels.size()];
-        for(int x=0;x<labels.size();x++){
-            strings[x]=labels.get(x).getCnWord()+"|"+labels.get(x).getJpWord();
+        String[] strings = new String[labels.size()];
+        for (int x = 0; x < labels.size(); x++) {
+            strings[x] = labels.get(x).getCnWord() + "|" + labels.get(x).getJpWord();
         }
         neta.setLabels(strings);
         return neta;
@@ -60,13 +60,13 @@ public class NetaImpl implements NetaService {
 
     @Override
     public void changeNetaStatus(List<Neta> netas) {
-        if(netas.size()<=0){
+        if (netas.size() <= 0) {
             return;
         }
-        for(int x=0;x<netas.size();x++){
-            Neta n=netas.get(x);
-            netas.set(x,new Neta(n.getNetaId(),n.getNetaStatus(),n.getReason()));
+        for (int x = 0; x < netas.size(); x++) {
+            Neta n = netas.get(x);
+            netas.set(x, new Neta(n.getNetaId(), n.getNetaStatus(), n.getReason()));
         }
-        netaMapper.changeNetaStatus(netas,(int)netas.get(0).getNetaStatus(),netas.get(0).getReason());
+        netaMapper.changeNetaStatus(netas, (int) netas.get(0).getNetaStatus(), netas.get(0).getReason());
     }
 }

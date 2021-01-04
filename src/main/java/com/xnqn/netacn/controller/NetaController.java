@@ -22,7 +22,7 @@ import java.util.List;
  * @Description:
  */
 @RestController
-@Api("词语模块")
+@Api(tags ="词语模块")
 @Slf4j
 @RequestMapping("/neta")
 public class NetaController {

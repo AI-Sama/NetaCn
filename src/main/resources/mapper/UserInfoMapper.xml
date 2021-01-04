@@ -26,6 +26,22 @@
     head_img, user_language, word_limit, up_limit, login_limit, user_power, user_level, 
     spare1, spare2, spare3
   </sql>
+    <sql id="user_no_password">
+    user_id,user_mail,user_name, gmt_create, gmt_modified, last_login_time, user_account,
+    head_img, user_language, word_limit, up_limit, login_limit, user_power, user_level,
+    spare1, spare2, spare3
+  </sql>
+    <select id="selectUserTotal" resultType="java.lang.Integer">
+        select
+        count(user_id)
+        from user_info
+    </select>
+    <select id="selectUsers" resultMap="BaseResultMap">
+        select
+        <include refid="user_no_password"/>
+        from user_info
+        limit #{pageNum,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

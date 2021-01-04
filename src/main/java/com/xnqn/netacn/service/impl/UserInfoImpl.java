@@ -1,12 +1,15 @@
 package com.xnqn.netacn.service.impl;
 
 import com.xnqn.netacn.mapper.UserInfoMapper;
+import com.xnqn.netacn.model.PageInfo;
 import com.xnqn.netacn.model.UserInfo;
 import com.xnqn.netacn.service.UserInfoService;
 import com.xnqn.netacn.utils.MD5Util;
 import com.xnqn.netacn.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 /**
@@ -64,6 +67,16 @@ public class UserInfoImpl implements UserInfoService {
         UserInfo userInfo = userInfoMapper.selectByAccount(account);
         userInfo.setUserPassword(null);
         return userInfo;
+    }
+
+    @Override
+    public PageInfo<List<UserInfo>> selectUsers(PageInfo pageInfo) {
+        if (pageInfo.getTotal() == null) {
+            pageInfo.setTotal(userInfoMapper.selectUserTotal());
+        }
+        List<UserInfo> users = userInfoMapper.selectUsers((pageInfo.getPageNum() - 1) * pageInfo.getPageSize(), pageInfo.getPageSize());
+        pageInfo.setData(users);
+        return pageInfo;
     }
 
     @Override

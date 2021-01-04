@@ -2,7 +2,10 @@ package com.xnqn.netacn.mapper;
 
 import com.xnqn.netacn.model.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
 @Repository
@@ -24,5 +27,6 @@ public interface UserInfoMapper {
     int updateByPrimaryKeySelective(UserInfo record);
 
     int updateByAccountSelective(UserInfo record);
-
+    int selectUserTotal();
+    List<UserInfo> selectUsers(@Param("pageNum") Integer pageNum, @Param("pageSize")Integer pageSize);
 }

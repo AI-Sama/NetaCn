@@ -1,6 +1,9 @@
 package com.xnqn.netacn.service;
 
+import com.xnqn.netacn.model.PageInfo;
 import com.xnqn.netacn.model.UserInfo;
+
+import java.util.List;
 
 /**
  * @ProjectName: netacn
@@ -14,4 +17,5 @@ public interface UserInfoService {
     int updateUser(UserInfo userInfo);
     UserInfo selectUser(String account);
     UserInfo userLogin(UserInfo userInfo);
+    PageInfo<List<UserInfo>> selectUsers(PageInfo pageInfo);
 }
