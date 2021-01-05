@@ -2,6 +2,7 @@ package com.xnqn.netacn.controller;
 
 import com.xnqn.netacn.model.Neta;
 import com.xnqn.netacn.model.NetaLabel;
+import com.xnqn.netacn.model.PageInfo;
 import com.xnqn.netacn.service.impl.NetaImpl;
 import com.xnqn.netacn.service.impl.NetaLabelImpl;
 import com.xnqn.netacn.utils.ResultBean;
@@ -64,10 +65,15 @@ public class NetaController {
     }
 
 
+    @ApiOperation("查找审核neta")
+    @GetMapping(value = "/selectJudgeNetas", produces = {"application/json;charset=utf-8"})
+    public ResultBean selectJudgeNetas() {
+        return new ResultBean(netaimpl.selectJudgeNetas());
+    }
     @ApiOperation("查找neta")
-    @GetMapping(value = "/selectNeta", produces = {"application/json;charset=utf-8"})
-    public ResultBean selectNeta(Integer statusCode) {
-        return new ResultBean(netaimpl.selectNeta(statusCode));
+    @GetMapping(value = "/selectNetas", produces = {"application/json;charset=utf-8"})
+    public ResultBean selectNetas(@ModelAttribute PageInfo pageInfo) {
+        return new ResultBean(netaimpl.selectNetas(pageInfo));
     }
 
     @ApiOperation("查找详细资料")

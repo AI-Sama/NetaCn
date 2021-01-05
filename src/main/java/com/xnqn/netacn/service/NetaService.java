@@ -1,6 +1,7 @@
 package com.xnqn.netacn.service;
 
 import com.xnqn.netacn.model.Neta;
+import com.xnqn.netacn.model.PageInfo;
 
 import java.util.List;
 
@@ -12,7 +13,8 @@ import java.util.List;
  */
 public interface NetaService {
     void  addNeta(Neta neta);
-    List<Neta> selectNeta(Integer statusCode);
+    List<Neta> selectJudgeNetas();
+    PageInfo selectNetas(PageInfo pageInfo);
     Neta selectFullNeta(Integer netaId);
     void changeNetaStatus(List<Neta> netas);
 }

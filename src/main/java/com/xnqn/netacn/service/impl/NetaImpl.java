@@ -4,6 +4,7 @@ import com.xnqn.netacn.mapper.NetaLabelMapper;
 import com.xnqn.netacn.mapper.NetaMapper;
 import com.xnqn.netacn.model.Neta;
 import com.xnqn.netacn.model.NetaLabel;
+import com.xnqn.netacn.model.PageInfo;
 import com.xnqn.netacn.service.NetaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,8 +36,19 @@ public class NetaImpl implements NetaService {
     }
 
     @Override
-    public List<Neta> selectNeta(Integer statusCode) {
-        return netaMapper.selectByStatusCode(statusCode);
+    public List<Neta> selectJudgeNetas() {
+        return netaMapper.selectByStatusCode(0);
+    }
+
+    @Override
+    public PageInfo selectNetas(PageInfo pageInfo) {
+        pageInfo.setTotal(netaMapper.selectCountNetas(pageInfo.getPb()));
+        if(pageInfo.getSelectWord().trim().length()<=0){
+            pageInfo.setSelectWord(null);
+        }
+        pageInfo.setPageNum((pageInfo.getPageNum()-1)*pageInfo.getPageSize());
+        pageInfo.setData(netaMapper.selectNetas(pageInfo));
+        return pageInfo;
     }
 
     @Override

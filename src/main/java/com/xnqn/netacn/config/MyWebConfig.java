@@ -21,7 +21,9 @@ public class MyWebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new UserInterceptor())
                 .addPathPatterns("/user/**")//添加的拦截器路径
                 .addPathPatterns("/neta/**")
-                .excludePathPatterns("/user/userLogin");//排除的路径
+                .excludePathPatterns("/user/userLogin")//排除的路径
+                .excludePathPatterns("/neta/selectFullNeta")//排除的路径
+                .excludePathPatterns("/neta/selectNetas");//排除的路径
     }
 
     @Override

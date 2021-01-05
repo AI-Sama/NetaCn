@@ -1,6 +1,7 @@
 package com.xnqn.netacn.mapper;
 
 import com.xnqn.netacn.model.Neta;
+import com.xnqn.netacn.model.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -21,6 +22,7 @@ public interface NetaMapper {
     int updateByPrimaryKeySelective(Neta record);
 
     List<Neta> selectByStatusCode(Integer netaStatus);
-
+    int selectCountNetas(Integer pb);
+    List<Neta>  selectNetas(PageInfo pageInfo);
     int changeNetaStatus(@Param("netas") List<Neta> netas,@Param("netaStatus")Integer netaStatus,@Param("reason")String reason);
 }

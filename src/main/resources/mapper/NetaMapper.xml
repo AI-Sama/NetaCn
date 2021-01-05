@@ -39,6 +39,37 @@
         from neta
         where neta_id = #{netaId,jdbcType=INTEGER}
     </select>
+    <select id="selectCountNetas" resultType="java.lang.Integer">
+        select
+        count(*)
+        from neta
+        where neta_status = 1
+        <if test="pb == 1">
+            and word_shield =0
+        </if>
+    </select>
+    <select id="selectNetas" parameterType="com.xnqn.netacn.model.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="simple_list"/>
+        from neta
+        where neta_status = 1
+        <if test="pb == 1">
+            and word_shield =0
+        </if>
+        <if test="selectWord != null">
+            and neta_word like "%"#{selectWord}"%" or katakana like "%"#{selectWord}"%"
+        </if>
+        <if test="status==0">
+            order by neta_id desc
+        </if>
+        <if test="status==1">
+            order by neta_date desc
+        </if>
+        <if test="status==2">
+            order by like_num desc
+        </if>
+        limit #{pageNum},#{pageSize}
+    </select>
     <select id="selectByStatusCode" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="simple_list"/>
@@ -257,7 +288,7 @@
     </update>
 
     <update id="changeNetaStatus">
-          update neta
+        update neta
         <set>
             <if test="netaStatus != null">
                 neta_status = #{netaStatus,jdbcType=TINYINT},
