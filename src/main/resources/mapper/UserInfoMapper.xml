@@ -33,7 +33,7 @@
   </sql>
     <select id="selectUserTotal" resultType="java.lang.Integer">
         select
-        count(user_id)
+        count(*)
         from user_info
     </select>
     <select id="selectUsers" resultMap="BaseResultMap">
