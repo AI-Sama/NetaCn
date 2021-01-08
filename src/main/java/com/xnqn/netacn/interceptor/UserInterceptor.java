@@ -21,6 +21,7 @@ public class UserInterceptor implements HandlerInterceptor {
 //            return true;
 //        }
         String token = request.getHeader("token");
+        
         if (token == null || token.trim().length() <= 0) {
             //token为空
             request.setAttribute("code", -1);
