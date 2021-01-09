@@ -21,7 +21,7 @@ public class UserInterceptor implements HandlerInterceptor {
 //            return true;
 //        }
         String token = request.getHeader("token");
-        
+
         if (token == null || token.trim().length() <= 0) {
             //token为空
             request.setAttribute("code", -1);
@@ -30,6 +30,7 @@ public class UserInterceptor implements HandlerInterceptor {
         }
         String userAccount = TokenUtils.verifyToken(token); // 校验
         if (userAccount == null) {
+            
             //token过期||解析失败
             request.setAttribute("code", -2);
             request.getRequestDispatcher("/error/errorToken").forward(request, response);
