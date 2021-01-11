@@ -24,7 +24,6 @@ public class UserInterceptor implements HandlerInterceptor {
 
         if (token == null || token.trim().length() <= 0) {
             //token为空
-            
             request.setAttribute("code", -1);
             request.getRequestDispatcher("/error/errorToken").forward(request, response);
             return false;
