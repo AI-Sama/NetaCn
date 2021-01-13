@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Description: 用户拦截器
  */
 public class UserInterceptor implements HandlerInterceptor {
-    
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 //        if("OPTIONS".equals(request.getMethod().toUpperCase())) {
@@ -30,6 +30,7 @@ public class UserInterceptor implements HandlerInterceptor {
             return false;
         }
         String userAccount = TokenUtils.verifyToken(token); // 校验
+        
         if (userAccount == null) {
 
             //token过期||解析失败
