@@ -23,10 +23,11 @@ public class UserInterceptor implements HandlerInterceptor {
 //        }
         String token = request.getHeader("token");
         if (token == null || token.trim().length() <= 0) {
+            
             //token为空
             request.setAttribute("code", -1);
             request.getRequestDispatcher("/error/errorToken").forward(request, response);
-            
+
             return false;
         }
         String userAccount = TokenUtils.verifyToken(token); // 校验
