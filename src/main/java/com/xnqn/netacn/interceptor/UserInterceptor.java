@@ -21,10 +21,9 @@ public class UserInterceptor implements HandlerInterceptor {
 //              放行OPTIONS请求
 //            return true;
 //        }
-        
+
         String token = request.getHeader("token");
         if (token == null || token.trim().length() <= 0) {
-
             //token为空
             request.setAttribute("code", -1);
             request.getRequestDispatcher("/error/errorToken").forward(request, response);
