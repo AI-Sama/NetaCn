@@ -32,7 +32,6 @@ public class UserInterceptor implements HandlerInterceptor {
         String userAccount = TokenUtils.verifyToken(token); // 校验
 
         if (userAccount == null) {
-
             //token过期||解析失败
             request.setAttribute("code", -2);
             request.getRequestDispatcher("/error/errorToken").forward(request, response);
