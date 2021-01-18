@@ -27,7 +27,6 @@ public class UserInterceptor implements HandlerInterceptor {
             //token为空
             request.setAttribute("code", -1);
             request.getRequestDispatcher("/error/errorToken").forward(request, response);
-
             return false;
         }
         String userAccount = TokenUtils.verifyToken(token); // 校验
