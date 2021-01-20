@@ -40,7 +40,6 @@ public class UserInterceptor implements HandlerInterceptor {
         request.setAttribute("userAccount", userAccount);
         return true;
     }
-
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
