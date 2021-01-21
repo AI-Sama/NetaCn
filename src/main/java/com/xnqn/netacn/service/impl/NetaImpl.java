@@ -29,7 +29,7 @@ public class NetaImpl implements NetaService {
 
     @Override
     public void addNeta(Neta neta) {
-        if (neta.getNetaDate() < 100000) {
+        if (neta.getNetaDate() != null && neta.getNetaDate() < 100000) {
             neta.setNetaDate(null);
         }
         netaMapper.insertSelective(neta);
@@ -43,10 +43,10 @@ public class NetaImpl implements NetaService {
     @Override
     public PageInfo selectNetas(PageInfo pageInfo) {
         pageInfo.setTotal(netaMapper.selectCountNetas(pageInfo.getPb()));
-        if(pageInfo.getSelectWord().trim().length()<=0){
+        if (pageInfo.getSelectWord().trim().length() <= 0) {
             pageInfo.setSelectWord(null);
         }
-        pageInfo.setPageNum((pageInfo.getPageNum()-1)*pageInfo.getPageSize());
+        pageInfo.setPageNum((pageInfo.getPageNum() - 1) * pageInfo.getPageSize());
         pageInfo.setData(netaMapper.selectNetas(pageInfo));
         return pageInfo;
     }

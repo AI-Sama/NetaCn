@@ -40,25 +40,30 @@ public class NetaController {
     @ApiOperation("添加neta")
     @PostMapping(value = "/addNeta", produces = {"application/json;charset=utf-8"})
     public ResultBean addNeta(@RequestBody Neta neta, HttpServletRequest httpServletRequest) {
+        if(neta==null){
+            return new ResultBean(0,"未知错误");
+        }
         neta.setUpUser((String) httpServletRequest.getAttribute("userAccount"));
         String label = neta.getNetaLabel();
-        String[] labels = label.split("\\|");
-        if (labels.length > 5) {
-            return new ResultBean(0, "标签最多只能有5个");
-        }
-        ArrayList<NetaLabel> labelArrayList = new ArrayList<>();
-        for (int x = 0; x < labels.length; x++) {
-            labelArrayList.add(new NetaLabel(labels[x]));
-        }
-        netaLabel.addLabel(labelArrayList);
-        label = "";
-        for (int x = 0; x < labelArrayList.size(); x++) {
-            label += labelArrayList.get(x).getLabelId();
-            if (x != labelArrayList.size() - 1) {
-                label += "|";
+        if(label!=null&&label.length()>0) {
+            String[] labels = label.split("\\|");
+            if (labels.length > 5) {
+                return new ResultBean(0, "标签最多只能有5个");
             }
+            ArrayList<NetaLabel> labelArrayList = new ArrayList<>();
+            for (int x = 0; x < labels.length; x++) {
+                labelArrayList.add(new NetaLabel(labels[x]));
+            }
+            netaLabel.addLabel(labelArrayList);
+            label = "";
+            for (int x = 0; x < labelArrayList.size(); x++) {
+                label += labelArrayList.get(x).getLabelId();
+                if (x != labelArrayList.size() - 1) {
+                    label += "|";
+                }
+            }
+            neta.setNetaLabel(label);
         }
-        neta.setNetaLabel(label);
         netaimpl.addNeta(neta);
         return new ResultBean();
     }

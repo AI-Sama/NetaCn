@@ -41,7 +41,7 @@
         <include refid="Base_Column_List"/>
         from neta_label
         where
-        <foreach collection="netaIds" item="netaId" open="label_id=" separator="or ">
+        <foreach collection="netaIds" item="netaId"  separator="or ">
             label_id=#{netaId,jdbcType=INTEGER}
         </foreach>
     </select>
@@ -61,11 +61,8 @@
         cn_word, jp_word, spare1,
         spare2, spare3)
         values
-        <foreach collection="records" item="label" index="i">
+        <foreach collection="records" item="label"  separator=",">
             <if test="label.labelId == null">
-                <if test="i != 0">
-                    ,
-                </if>
                 ( #{label.cnWord,jdbcType=VARCHAR}, #{label.jpWord,jdbcType=VARCHAR}, #{label.spare1,jdbcType=VARCHAR},
                 #{label.spare2,jdbcType=VARCHAR}, #{label.spare3,jdbcType=VARCHAR})
             </if>
