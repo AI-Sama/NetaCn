@@ -74,6 +74,25 @@ public class NetaController {
     public ResultBean selectJudgeNetas() {
         return new ResultBean(netaimpl.selectJudgeNetas());
     }
+
+    @ApiOperation("点赞")
+    @GetMapping(value = "/likeClick", produces = {"application/json;charset=utf-8"})
+    public ResultBean likeClick() {
+        //todo 点赞
+        return new ResultBean();
+    }
+    @ApiOperation("收藏")
+    @GetMapping(value = "/starClick", produces = {"application/json;charset=utf-8"})
+    public ResultBean starClick() {
+        //todo 收藏
+        return new ResultBean();
+    }
+    @ApiOperation("修改")
+    @GetMapping(value = "/updateNeta", produces = {"application/json;charset=utf-8"})
+    public ResultBean updateNeta() {
+        //todo 修改
+        return new ResultBean();
+    }
     @ApiOperation("查找neta")
     @GetMapping(value = "/selectNetas", produces = {"application/json;charset=utf-8"})
     public ResultBean selectNetas(@ModelAttribute PageInfo pageInfo) {
