@@ -81,6 +81,7 @@ public class NetaController {
         //todo 点赞
         return new ResultBean();
     }
+    
     @ApiOperation("收藏")
     @GetMapping(value = "/starClick", produces = {"application/json;charset=utf-8"})
     public ResultBean starClick() {
