@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * @ProjectName: netacn
@@ -23,5 +24,9 @@ public class ErrorController {
     public ResultBean errorToken(HttpServletRequest httpServletRequest) {
         return new ResultBean((int)httpServletRequest.getAttribute("code"), "token校验失败");
     }
-
+    @ApiOperation("TEST")
+    @GetMapping(value = "/test", produces = {"application/json;charset=utf-8"})
+    public ResultBean test() {
+        return new ResultBean(new Date());
+    }
 }
