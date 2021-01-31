@@ -18,6 +18,7 @@ import java.util.Date;
 @Api(tags ="错误控制器")
 @RequestMapping("/error")
 public class ErrorController {
+    
     @ApiOperation("token校验失败")
     @GetMapping(value = "/errorToken", produces = {"application/json;charset=utf-8"})
     public ResultBean errorToken(HttpServletRequest httpServletRequest) {
