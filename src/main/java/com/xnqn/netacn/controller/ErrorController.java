@@ -21,7 +21,6 @@ public class ErrorController {
     @ApiOperation("token校验失败")
     @GetMapping(value = "/errorToken", produces = {"application/json;charset=utf-8"})
     public ResultBean errorToken(HttpServletRequest httpServletRequest) {
-
         return new ResultBean((int)httpServletRequest.getAttribute("code"), "token校验失败");
     }
     @ApiOperation("TEST")
