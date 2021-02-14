@@ -84,7 +84,6 @@ public class UserInfoImpl implements UserInfoService {
 
         UserInfo getUser = userInfoMapper.selectByAccount(userInfo.getUserAccount());
         if (getUser != null) {
-            
             if (MD5Util.strToMd5(userInfo.getUserPassword()).equals(getUser.getUserPassword())) {
                 //登录成功
                 getUser.setUserPassword(null);
