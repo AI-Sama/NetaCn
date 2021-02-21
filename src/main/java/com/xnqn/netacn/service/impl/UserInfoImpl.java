@@ -81,6 +81,7 @@ public class UserInfoImpl implements UserInfoService {
 
     @Override
     public UserInfo userLogin(UserInfo userInfo) {
+        
         UserInfo getUser = userInfoMapper.selectByAccount(userInfo.getUserAccount());
         if (getUser != null) {
             
