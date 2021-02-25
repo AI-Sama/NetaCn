@@ -78,7 +78,6 @@ public class UserInfoImpl implements UserInfoService {
         pageInfo.setData(users);
         return pageInfo;
     }
-
     @Override
     public UserInfo userLogin(UserInfo userInfo) {
         UserInfo getUser = userInfoMapper.selectByAccount(userInfo.getUserAccount());
