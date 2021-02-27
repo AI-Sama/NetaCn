@@ -71,7 +71,6 @@ public class UserInfoImpl implements UserInfoService {
 
     @Override
     public PageInfo<List<UserInfo>> selectUsers(PageInfo pageInfo) {
-        
         if (pageInfo.getTotal() == 0) {
             pageInfo.setTotal(userInfoMapper.selectUserTotal());
         }
