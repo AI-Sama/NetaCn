@@ -68,7 +68,6 @@ public class UserInfoImpl implements UserInfoService {
         userInfo.setUserPassword(null);
         return userInfo;
     }
-
     @Override
     public PageInfo<List<UserInfo>> selectUsers(PageInfo pageInfo) {
         if (pageInfo.getTotal() == 0) {
